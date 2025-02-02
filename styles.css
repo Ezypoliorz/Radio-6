@@ -1,0 +1,273 @@
+body {
+
+  background-color: #fbfbfb;
+
+}
+
+.div-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 200px;
+    padding-top: 10px;
+    background-image: url("Images/Fond\ d\'écran.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-attachment: fixed;
+    display: block;
+
+    -webkit-touch-callout: none; /* Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+
+  }
+
+  .conteneur {
+    width: 100% - 200px;
+    margin-left: 200px;
+    align-items: center;
+    background-color: #fbfbfb;
+
+  }
+
+  .div-menu {
+    width: 200px;
+    height: 45px;
+    text-align: center; 
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: -20px;
+    line-height: 45px;
+    text-align: center;
+
+  }
+
+  .div-menu:hover {
+    background-color: #0000003d;
+
+  }
+
+  a {
+    text-decoration: none;
+    color:  #fbfbfb;
+
+  }
+
+  .div-émission-background {
+
+    background-color: black;
+    height: 163px;
+    width: 503px;
+    margin: 0 auto;
+    border-radius: 10px;
+    display: flex;
+    padding: 2px;
+    padding-bottom: 3px;
+    margin-top: 20px;
+    margin-bottom: 30px ;
+
+  }
+
+  .div-émission-background:hover {
+
+    background-image: url("Images/Fond\ d\'écran.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: 163px;
+    width: 503px;
+    margin: 0 auto;
+    border-radius: 10px;
+    display: flex;
+    padding: 2px;
+    margin-top: 20px;
+    margin-bottom: 30px ;
+
+  }
+
+  .div-émission {
+
+    background-color: #fbfbfb;
+    height: 160px;
+    width: 500px;
+    border-radius: 8px;
+    margin: 0 auto;
+    margin-top: 1.5px;
+    display: block;
+
+  }
+
+  .div-audio {
+
+    display: flex;
+
+  }
+
+  .audio {
+
+    margin: 0 auto;
+
+  }
+
+  .infos-émission {
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;
+    margin-left: 10px;
+    width: auto;
+    margin-bottom: 30px;
+
+  }
+
+  .date-émission {
+
+    margin-top: -18px;
+    color: #595959;
+
+  }
+
+  .programme {
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;
+    margin-left: 10px;
+  
+   }
+  
+   .programme:hover {
+  
+    cursor: pointer;
+  
+   }
+  
+   .div-programme-background {
+  
+      background-image: url("Images/Fond\ d\'écran.jpg");
+      background-size:cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      height: auto;
+      width: 503px;
+      margin: 0 auto;
+      border-radius: 10px;
+      display: flex;
+      padding: 2px;
+      padding-bottom: 4px;
+      margin-top: 20px;
+      margin-bottom: 30px ;
+  
+    }
+  
+    .div-programme-ensemble {
+      background-color:  #fbfbfb;
+      height: auto;
+      width: 500px;
+      border-radius: 8px;
+      margin: 0 auto;
+      margin-top: 1.5px;
+      display: flex;
+    
+    }
+  
+    .fermer {
+  
+      display: flex;
+      margin-top: 10px;
+      margin-left: 140px;
+      height: 50px;
+      width: auto;
+      
+    }
+  
+    .fermer:hover {
+  
+      cursor: pointer;
+  
+    }
+  
+    .infos {
+  
+      display: flex;
+      margin-top: -80px;
+      margin-left: 440px;
+      height: 50px;
+      width: auto;
+      
+    }
+  
+    .infos:hover {
+  
+      cursor: pointer;
+  
+    }
+
+
+
+
+
+
+
+
+
+
+ #Curseur {
+
+    top: 250px;
+    position: absolute;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, 0px);
+    height: 115.066px;
+    width: 57.533px;
+    background-image: url('Images/Curseur.svg');
+    background-attachment: fixed;
+    background-size: contain;
+
+ }
+
+ #Curseur:hover {
+
+    cursor: grab;
+
+ }
+
+ #Slider {
+
+    position: absolute;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, 0px);
+    -webkit-touch-callout: none; /* Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+    pointer-events: none;
+  
+
+ }
+
+ #Niveau-sonore {
+
+    display: flex;
+    margin-top: 100px;
+
+ }
+
+ #Volume-icone {
+
+  position: absolute;
+  top: 630px;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, 0px);
+
+ }
