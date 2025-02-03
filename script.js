@@ -63,7 +63,7 @@ document.addEventListener('mousemove', (event) => {
             document.getElementById("Volume-icone-img").src = "Images/Volume OFF.svg"
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
-                audio.volume = son;
+                audio.volume = 0;
             });
             
         }
