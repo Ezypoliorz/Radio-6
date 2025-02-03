@@ -17,8 +17,8 @@ let isDragging = false;
 let offsetY = 0;
 let positionY = 0;
 let son = 0;
-let YindexMin = 250;
-let YindexMax = 515;
+let YindexMin = 192;
+let YindexMax = 430;
 
 draggable.addEventListener('mousedown', (event) => {
     

@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="6.614583mm"
-   height="92.193825mm"
-   viewBox="0 0 6.614583 92.193825"
+   width="5.6948719mm"
+   height="76.199524mm"
+   viewBox="0 0 5.6948719 76.199524"
    version="1.1"
    id="svg1"
    sodipodi:docname="Design.svg"
@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.4164562"
-     inkscape:cx="449.00787"
-     inkscape:cy="391.46992"
+     inkscape:cx="350.87566"
+     inkscape:cy="500.19196"
      inkscape:window-width="1920"
      inkscape:window-height="991"
      inkscape:window-x="-9"
@@ -38,14 +38,14 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-135.78052,-66.994406)">
+     transform="translate(-84.972971,-98.477376)">
     <rect
-       style="fill:#404040;fill-opacity:1;stroke:none;stroke-width:0.0505826;stroke-linecap:round;stroke-miterlimit:3.1;stroke-opacity:1"
+       style="fill:#404040;fill-opacity:1;stroke:none;stroke-width:0.0426695;stroke-linecap:round;stroke-miterlimit:3.1;stroke-opacity:1"
        id="rect7"
-       width="6.6145835"
-       height="92.193832"
-       x="135.78052"
-       y="66.994408"
-       ry="3.3072917" />
+       width="5.6948776"
+       height="76.199532"
+       x="84.972969"
+       y="98.477379"
+       ry="2.8474388" />
   </g>
 </svg>
