@@ -34,7 +34,7 @@ document.addEventListener('mouseup', () => {
 document.addEventListener('mousemove', (event) => {
     
     if (isDragging) {
-        if (event.clientY - offsetY >= 200 && event.clientY - offsetY <= 465) {
+        if (event.clientY - offsetY >= 250 && event.clientY - offsetY <= 515) {
         document.getElementById("Curseur").style.cursor = 'grabbing';
         positionY = event.clientY;
         draggable.style.top = positionY - offsetY + 'px';
