@@ -49,27 +49,21 @@ document.addEventListener('mousemove', (event) => {
             document.getElementById("Volume-icone-img").src = "Images/Volume ON.svg"
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
-              if (audio !== audioElement) {
                 audio.volume = son;
-              }
             });
         }
         if (son <= 0.6) {
             document.getElementById("Volume-icone-img").src = "Images/Volume MILIEU.svg"
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
-              if (audio !== audioElement) {
                 audio.volume = son;
-              }
             });
         }
         if (son <= 0.03) {
             document.getElementById("Volume-icone-img").src = "Images/Volume OFF.svg"
             const allAudios = document.querySelectorAll('audio');
             allAudios.forEach(audio => {
-              if (audio !== audioElement) {
                 audio.volume = son;
-              }
             });
             
         }
