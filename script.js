@@ -17,6 +17,8 @@ let isDragging = false;
 let offsetY = 0;
 let positionY = 0;
 let son = 0;
+let YindexMin = 250;
+let YindexMax = 515;
 
 draggable.addEventListener('mousedown', (event) => {
     
@@ -34,13 +36,13 @@ document.addEventListener('mouseup', () => {
 document.addEventListener('mousemove', (event) => {
     
     if (isDragging) {
-        if (event.clientY - offsetY >= 250 && event.clientY - offsetY <= 515) {
+        if (event.clientY - offsetY >= YindexMin && event.clientY - offsetY <= YindexMax) {
         document.getElementById("Curseur").style.cursor = 'grabbing';
         positionY = event.clientY;
         draggable.style.top = positionY - offsetY + 'px';
         son = event.clientY - offsetY;
         son = Number(son);
-        son = (son - 250) / (515 - 250)
+        son = (son - YindexMin) / (YindexMax - YindexMin)
         son = 1 - son;
         son = son.toFixed(2);
         if (son > 0.6) {
