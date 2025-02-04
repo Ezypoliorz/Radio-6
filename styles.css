@@ -225,8 +225,8 @@ body {
     left: 50%;
     z-index: 2;
     transform: translate(-50%, 0px);
-    height: 66.350px;
-    width: 33.175px;
+    height: 80px;
+    width: 40px;
     background-image: url('Images/Curseur.svg');
     background-attachment: fixed;
     background-size: contain;
