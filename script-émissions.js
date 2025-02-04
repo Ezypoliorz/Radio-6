@@ -1,14 +1,48 @@
 document.getElementById("Programme-background1").style.display = "none";
+document.getElementById("Programme-background2").style.display = "none";
+document.getElementById("Programme-background3").style.display = "none";
+document.getElementById("Programme-background4").style.display = "none";
+document.getElementById("Programme-background5").style.display = "none";
 
-var fermer = document.getElementById("Close1");
-fermer.onclick = function() {
+document.getElementById("Close1").onclick = function() {
   document.getElementById("Programme-background1").style.display = "none";
 
 };
+document.getElementById("Close2").onclick = function() {
+  document.getElementById("Programme-background2").style.display = "none";
 
-var fermer = document.getElementById("Infos1");
-fermer.onclick = function() {
+};
+document.getElementById("Close3").onclick = function() {
+  document.getElementById("Programme-background3").style.display = "none";
+
+};
+document.getElementById("Close4").onclick = function() {
+  document.getElementById("Programme-background4").style.display = "none";
+
+};
+document.getElementById("Close5").onclick = function() {
+  document.getElementById("Programme-background5").style.display = "none";
+
+};
+
+document.getElementById("Infos1").onclick = function() {
   document.getElementById("Programme-background1").style.display = "block";
+
+};
+document.getElementById("Infos2").onclick = function() {
+  document.getElementById("Programme-background2").style.display = "block";
+
+};
+document.getElementById("Infos3").onclick = function() {
+  document.getElementById("Programme-background3").style.display = "block";
+
+};
+document.getElementById("Infos4").onclick = function() {
+  document.getElementById("Programme-background4").style.display = "block";
+
+};
+document.getElementById("Infos5").onclick = function() {
+  document.getElementById("Programme-background5").style.display = "block";
 
 };
 
@@ -17,8 +51,8 @@ let isDragging = false;
 let offsetY = 0;
 let positionY = 0;
 let son = 0;
-let YindexMin = 192;
-let YindexMax = 430;
+let YindexMin = 200;
+let YindexMax = 415;
 
 draggable.addEventListener('mousedown', (event) => {
     

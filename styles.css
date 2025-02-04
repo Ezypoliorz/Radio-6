@@ -196,7 +196,7 @@ body {
     .infos {
   
       display: flex;
-      margin-top: -80px;
+      margin-top: -85px;
       margin-left: 440px;
       height: 50px;
       width: auto;
@@ -220,7 +220,7 @@ body {
 
  #Curseur {
 
-    top: 192px;
+    top: 200px;
     position: absolute;
     left: 50%;
     z-index: 2;
@@ -245,6 +245,7 @@ body {
     top: 225px;
     left: 50%;
     z-index: 1;
+    height: 250px;
     transform: translate(-50%, 0px);
     -webkit-touch-callout: none; /* Safari */
     -webkit-user-select: none; /* Safari */
@@ -267,7 +268,7 @@ body {
  #Volume-icone {
 
   position: absolute;
-  top: 550px;
+  top: 490px;
   left: 50%;
   z-index: 1;
   transform: translate(-50%, 0px);
