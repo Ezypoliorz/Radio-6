@@ -3,13 +3,14 @@
 
 # Importation des modules
 from playsound import playsound # Playsound : lecture du fichier audio
-import pyaudio # Pyaudio : utilisé pour la sélection du périphérique audio
 from time import sleep # Time : utilisé pour les fonctions de délai
 import csv # CSV : lecture du fichier CSV
 import sys # Sys : utilisé pour quitter le programme
+import os # OS : utilisé pour les chemins de fichiers
 
 # Définition des variables
-csv_file = "C:/Users/ordi2429044/Documents/Programmation/Python/Projets/Audio player/Playlist/playlist.csv" # Nom du fichier CSV
+script_dir = os.path.dirname(os.path.abspath(__file__)) # Get the directory of the script
+csv_file = os.path.join(script_dir, "Playlist/playlist.csv") # Construct the full path to the CSV file
 audio_files = [] # Liste des fichiers audio
 mode = "" # Mode de lecture : flow (sans interruption) ou pause (avec interruption)
 
@@ -38,13 +39,13 @@ for i in range(len(audio_files)) :
 
 if mode == "flow" :
     for i in range(len(audio_files)) :
-        audio_url = "C:/Users/ordi2429044/Documents/Programmation/Python/Projets/Audio player/Playlist/" + audio_files[i] + ".mp3" # Chemin du fichier audio
+        audio_url = os.path.normpath(os.path.join(script_dir, "Playlist", audio_files[i] + ".mp3")).replace("\\", "/") # Chemin du fichier audio
         playsound(audio_url) # Lecture du fichier audio
 
 elif mode == "pause" :
     for i in range(len(audio_files)) :
         input("Appuyez sur Entrée pour continuer...") # Attente de l'appui sur la touche Entrée
-        audio_url = "C:/Users/ordi2429044/Documents/Programmation/Python/Projets/Audio player/Playlist/" + audio_files[i] + ".mp3" # Chemin du fichier audio
+        audio_url = os.path.normpath(os.path.join(script_dir, "Playlist", audio_files[i] + ".mp3")).replace("\\", "/") # Chemin du fichier audio
         playsound(audio_url) # Lecture du fichier audio
 
 print("🎉Fin de la playlist !")
