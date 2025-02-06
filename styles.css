@@ -32,6 +32,7 @@ body {
     margin-left: 200px;
     align-items: center;
     background-color: #fbfbfb;
+    display: block;
 
   }
 
@@ -274,3 +275,99 @@ body {
   transform: translate(-50%, 0px);
 
  }
+
+
+
+
+
+
+
+
+
+
+ .div-accueil-background {
+  
+  background-image: url("Images/Fond\ d\'écran.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: auto;
+  width: 703px;
+  margin: 0 auto;
+  border-radius: 10px;
+  display: flex;
+  padding: 2px;
+  padding-bottom: 4px;
+  margin-top: 20px;
+  margin-bottom: 30px ;
+
+}
+
+.div-accueil {
+  background-color:  #fbfbfb;
+  height: auto;
+  width: 700px;
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-top: 1.5px;
+  display: block;
+
+}
+
+.titre-accueil {
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: black;
+  margin-left: 10px;
+  width: auto;
+
+}
+
+.contenu-accueil {
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: auto;
+  margin-bottom: 30px;
+  margin-top: -10px;
+  text-align: justify;
+
+}
+
+.underlined {
+
+  color: black;
+  text-decoration: underline;
+
+}
+
+.underlined:hover {
+
+  cursor: text;
+
+}
+
+.div-images-accueil-ensemble {
+
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+
+}
+
+.div-images-accueil {
+
+  margin: 0 auto;
+
+}
+
+.images-accueil {
+
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+  border-radius: 10px;
+
+}
