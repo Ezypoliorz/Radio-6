@@ -493,3 +493,54 @@ body {
   margin-top: -15px;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+  body {
+    background-color: red;
+  }
+
+  #Niveau-sonore {
+
+    display: none;
+
+  }
+
+  .fleche-menu {
+
+    position: absolute;
+    transform: translate(19px, -19px);
+    color: #fbfbfb;
+
+  }
+
+}
+
+@media (max-width: 480px) {
+  body {
+    background-color: greenyellow;
+  }
+}
