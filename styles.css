@@ -11,12 +11,13 @@ body {
     height: 100%;
     width: 200px;
     padding-top: 10px;
-    background-image: url("Images/Fond\ d\'écran.jpg");
+    background-image: url("Images/Arrière-plan.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: left center;
     background-attachment: fixed;
     display: block;
+    z-index: 100000000;
 
     -webkit-touch-callout: none; /* Safari */
     -webkit-user-select: none; /* Safari */
@@ -36,6 +37,20 @@ body {
 
   }
 
+  .logo-header {
+
+    margin: 0 auto;
+    display: flex;
+    margin-bottom: 10px;
+
+  }
+
+  #logo-header-podcast {
+
+    transform: translate(-7px, 0px);
+
+  }
+
   .div-menu {
     width: 200px;
     height: 45px;
@@ -50,6 +65,14 @@ body {
 
   .div-menu:hover {
     background-color: #0000003d;
+
+  }
+
+  .fleche-menu {
+
+    position: absolute;
+    transform: translate(23px, -19px);
+    color: #fbfbfb;
 
   }
 
@@ -76,7 +99,7 @@ body {
 
   .div-émission-background:hover {
 
-    background-image: url("Images/Fond\ d\'écran.jpg");
+    background-image: url("Images/Arrière-plan.svg");
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -150,7 +173,7 @@ body {
   
    .div-programme-background {
   
-      background-image: url("Images/Fond\ d\'écran.jpg");
+      background-image: url("Images/Arrière-plan.svg");
       background-size:cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -287,7 +310,7 @@ body {
 
  .div-accueil-background {
   
-  background-image: url("Images/Fond\ d\'écran.jpg");
+  background-image: url("Images/Arrière-plan.svg");
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -369,5 +392,104 @@ body {
   margin-left: 2.5px;
   margin-right: 2.5px;
   border-radius: 10px;
+
+}
+
+
+
+
+
+
+.div-bouton-podcast-background {
+
+  background-color: black;
+  height: fit-content + 4px;
+  width: 366px;
+  margin: 0 auto;
+  border-radius: 10px;
+  display: flex;
+  padding: 2px;
+  padding-left: 2px;
+  padding-right: 2.5px;
+  padding-bottom: 3px;
+  padding-top: 2px;
+  margin-top: 20px;
+  margin-bottom: 30px ;
+  display: block;
+
+}
+
+.div-bouton-podcast-background:hover {
+
+  background-image: url("Images/Arrière-plan.svg");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: fit-content + 4px;
+  width: 366px;
+  margin: 0 auto;
+  border-radius: 10px;
+  display: flex;
+  padding: 2px;
+  padding-left: 2px;
+  padding-right: 2.5px;
+  padding-bottom: 3px;
+  padding-top: 2px;
+  margin-top: 20px;
+  margin-bottom: 30px ;
+  cursor: pointer;
+
+}
+
+.div-bouton-podcast {
+
+  background-color: #fbfbfb;
+  height: fit-content;
+  width: 360px;
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-top: 1.5px;
+  display: flex;
+  padding: 2px;;
+
+}
+
+.texte-bouton-podcast {
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: black;
+  margin: 5px auto;
+  margin-top: 10px;
+  display: block;
+  
+}
+
+.div-ligne {
+
+  display: flex;
+  padding-left: 60px;
+  padding-right: 60px;
+
+}
+
+.div-contenu-bouton-podcast {
+
+  display: flex;
+  margin-left: 10px;
+  justify-content: center;
+
+}
+
+.image-bouton-podcast {
+
+  margin-right: 10px;
+
+}
+
+.div-audio-podcasts {
+
+  display: flex;
+  margin-top: -15px;
 
 }
