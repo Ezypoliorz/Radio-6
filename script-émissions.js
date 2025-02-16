@@ -122,6 +122,6 @@ audio.addEventListener('play', () => {
 });
 });
 
-if (window.innerWidth > 768 && navigator.userAgent.match(/iPad|Android|Tablet/i)) {
+if (navigator.userAgent.match(/iPad|Android|Tablet/i)) {
   document.getElementById("Niveau-sonore").style.display = "none";
 }
