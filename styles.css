@@ -518,7 +518,24 @@ body {
 
 
 @media (max-width: 480px) {
-  body {
-    background-color: greenyellow;
+
+  .div-nav {
+    display: none;
   }
+
+  .div-émission-background {
+
+    background-color: black;
+    height: 163px;
+    width: 303px;
+    margin: 0 auto;
+    border-radius: 10px;
+    display: flex;
+    padding: 2px;
+    padding-bottom: 3px;
+    margin-top: 20px;
+    margin-bottom: 30px ;
+
+  }
+
 }

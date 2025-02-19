@@ -125,5 +125,3 @@ audio.addEventListener('play', () => {
 if (navigator.userAgent.match(/iPad|Android|Tablet/i)) {
   document.getElementById("Niveau-sonore").style.display = "none";
 }
-
-document.getElementById("User-Agent").textContent = navigator.userAgent;
