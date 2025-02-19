@@ -519,8 +519,17 @@ body {
 
 @media (max-width: 480px) {
 
+  .conteneur {
+    width: 100%;
+    align-items: center;
+    background-color: #fbfbfb;
+    display: block;
+
+  }
+
   .div-nav {
     display: none;
+    
   }
 
   .div-émission-background {
