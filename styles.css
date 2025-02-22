@@ -519,15 +519,16 @@ body {
 
 @media (max-width: 480px) {
 
-  body {
+  .conteneur {
 
+    width: 100vw;
     align-items: center;
     display: block;
 
   }
 
   .div-nav {
-    
+
     display: none;
 
   }
