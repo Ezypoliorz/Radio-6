@@ -531,8 +531,9 @@ body {
 
     display: flex;
     margin-left: 1px;
-    width: max-content;
+    width: 100%;
     align-items: center;
+    background-color: red;
 
   }
 
