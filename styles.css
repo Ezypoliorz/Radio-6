@@ -519,13 +519,19 @@ body {
 
 @media (max-width: 480px) {
 
+  body {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
   .conteneur {
 
-    position: absolute;
-    top: 0px;
-    left: 0px;
+    display: flex;
     margin-left: 1px;
-    width: 100vw;
+    width: max-content;
     align-items: center;
 
   }
@@ -584,7 +590,7 @@ body {
 
   .infos {
 
-    margin-left: 310px;
+    margin-left: 330px;
 
   }
 
