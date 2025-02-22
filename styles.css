@@ -519,14 +519,6 @@ body {
 
 @media (max-width: 480px) {
 
-  body {
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-  }
-
   .conteneur {
 
     display: flex;
