@@ -519,16 +519,15 @@ body {
 
 @media (max-width: 480px) {
 
-  .conteneur {
-    width: 100%;
-    margin-left: 1px;
+  body {
+
     align-items: center;
     display: block;
-    background-color: red;
 
   }
 
   .div-nav {
+    
     display: none;
 
   }
@@ -576,6 +575,20 @@ body {
     margin: 0 auto;
     margin-top: 1.5px;
     display: block;
+
+  }
+
+  .infos {
+
+    margin-left: 240px;
+
+  }
+
+  .div-bouton-nav-téléphone {
+
+    position: absolute;
+    top: 5px;
+    left: 5px;
 
   }
 
