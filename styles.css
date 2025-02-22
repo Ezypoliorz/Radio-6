@@ -524,9 +524,9 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
+    margin-left: 1px;
     width: 100vw;
     align-items: center;
-    display: block;
 
   }
 
@@ -584,7 +584,7 @@ body {
 
   .infos {
 
-    margin-left: 240px;
+    margin-left: 310px;
 
   }
 
