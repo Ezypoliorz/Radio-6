@@ -28,6 +28,12 @@ body {
 
   }
 
+  .div-bouton-nav-téléphone {
+
+    display: none;
+
+  }
+
   .conteneur {
     width: 100% - 200px;
     margin-left: 200px;
@@ -529,16 +535,31 @@ body {
   .conteneur {
 
     display: block;
-    margin-left: 1px;
+    margin-left: 5px;
     width: 100%;
     align-items: center;
-    background-color: red;
 
   }
 
   .div-nav {
 
     display: none;
+
+  }
+
+  .div-bouton-nav-téléphone {
+
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: red;
+
+  }
+
+  .logo-header {
+
+    width: 300px;
 
   }
 
@@ -591,14 +612,6 @@ body {
   .infos {
 
     margin-left: 330px;
-
-  }
-
-  .div-bouton-nav-téléphone {
-
-    position: absolute;
-    top: 5px;
-    left: 5px;
 
   }
 
