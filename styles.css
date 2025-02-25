@@ -540,6 +540,7 @@ body {
     margin-left: 5px;
     width: 100%;
     align-items: center;
+    padding-left: -5px;
 
   }
 
@@ -563,7 +564,7 @@ body {
 
   .logo-header {
 
-    width: 300px;
+    width: 230px;
 
   }
 
@@ -597,7 +598,7 @@ body {
     padding: 2px;
     padding-bottom: 3px;
     margin-top: 20px;
-    margin-bottom: 30px ;
+    margin-bottom: 30px;
 
   }
 
@@ -610,6 +611,7 @@ body {
     margin: 0 auto;
     margin-top: 1.5px;
     display: block;
+    padding-top: -10px;
 
   }
 
@@ -617,6 +619,30 @@ body {
 
     margin-left: 300px;
 
+  }
+
+  .div-programme-background {
+  
+    height: auto;
+    width: 343px;
+
+  }
+
+  .div-programme-ensemble {
+
+    width: 340px;
+
+  
+  }
+
+  .fermer {
+
+    display: flex;
+    margin-top: 10px;
+    margin-left: 40px;
+    height: 50px;
+    width: auto;
+    
   }
 
 }
