@@ -545,19 +545,26 @@ body {
   }
 
   .div-nav {
-    position: fixed;
-    left: 0;
+
+    display: none;
+
+  }
+
+  .div-nav-téléphone{
+
+    position: absolute;
+    align-items: center;
     top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
-    padding: 0px;
-    margin: 0px;
-    background-image: url("Images/Arrière-plan.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-attachment: fixed;
-    display: fixed;
+
+  }
+
+  .div-menu-téléphone{
+
+    display: flex;
+    margin: 0 auto;
 
   }
 

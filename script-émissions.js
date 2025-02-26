@@ -125,3 +125,11 @@ audio.addEventListener('play', () => {
 if (navigator.userAgent.match(/iPad|Android|Tablet/i)) {
   document.getElementById("Niveau-sonore").style.display = "none";
 }
+
+document.getElementById("Bouton-nav-téléphone").onclick = function() {
+
+  document.getElementById("Conteneur").style.display = "none";
+  document.getElementById("Bouton-nav-téléphone").style.display = "none";
+  document.getElementById("Div-nav-téléphone").style.display = "block";
+
+}
