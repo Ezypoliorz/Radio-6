@@ -550,13 +550,14 @@ body {
     top: 0;
     height: 100%;
     width: 100%;
-    padding-top: 10px;
+    padding: 0px;
+    margin: 0px;
     background-image: url("Images/Arrière-plan.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: left center;
     background-attachment: fixed;
-    display: block;
+    display: fixed;
 
   }
 
