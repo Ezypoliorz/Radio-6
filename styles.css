@@ -554,6 +554,7 @@ body {
 
     position: absolute;
     align-items: center;
+    justify-content: center;
     top: 0;
     left: 0;
     height: 100%;
@@ -564,7 +565,13 @@ body {
   .div-menu-téléphone{
 
     display: flex;
-    margin: 0 auto;
+    width: 200px;
+    height: 45px;
+    text-align: center; 
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: -20px;
+    line-height: 45px;
 
   }
 
