@@ -609,8 +609,8 @@ body {
     border-radius: 10px;
     display: flex;
     padding: 2px;
-    margin-left: 5px;
     padding-bottom: 3px;
+    margin-left: 5px;
     margin-top: 20px;
     margin-bottom: 30px ;
 
@@ -630,6 +630,7 @@ body {
     display: flex;
     padding: 2px;
     padding-bottom: 3px;
+    margin-left: 5px;
     margin-top: 20px;
     margin-bottom: 30px;
 
@@ -658,6 +659,7 @@ body {
   
     height: auto;
     width: 343px;
+    margin-left: 5px;
 
   }
 
