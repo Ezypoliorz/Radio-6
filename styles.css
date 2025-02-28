@@ -540,7 +540,7 @@ body {
     margin-left: 5px;
     width: 100%;
     align-items: center;
-    padding-left: -5px;
+    padding-left: -10px;
 
   }
 
@@ -552,6 +552,7 @@ body {
 
   .div-nav-téléphone{
 
+    display: none;
     position: absolute;
     align-items: center;
     justify-content: center;
