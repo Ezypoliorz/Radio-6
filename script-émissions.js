@@ -114,5 +114,10 @@ document.getElementById("Bouton-nav-téléphone").onclick = function() {
   document.getElementById("Conteneur").style.display = "none";
   document.getElementById("Bouton-nav-téléphone").style.display = "none";
   document.getElementById("Div-nav-téléphone").style.display = "block";
+  document.getElementById("Body").style.background_image = "Images/Arrière-plan.svg";
+  document.getElementById("Body").style.background_size = "cover";
+  document.getElementById("Body").style.background_repeat = "no-repeat";
+  document.getElementById("Body").style.background_position = "center";
+  document.getElementById("Body").style.background_attachment = "fixed";
 
 }
