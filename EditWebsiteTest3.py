@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import sys
 import time
 import os
+from pydub import AudioSegment
 
 titre_émission = "Titre"
 date_émission = "Date"
@@ -20,6 +21,8 @@ def AjouterEmission(titre, date, audio, programme) :
         id_programme = ""
         temps_programme = ""
         temps_programme_réel = 0
+        liste_temps_programme_réel = []
+        chroniques = {}
         titre_programme = ""
 
         html_ajout = f"""
@@ -64,6 +67,7 @@ def AjouterEmission(titre, date, audio, programme) :
                 seconde_programme_réel = int(programme[i].split(" - ")[0].split(":")[1])
 
             temps_programme_réel = minute_programme_réel + seconde_programme_réel
+            liste_temps_programme_réel.append(temps_programme_réel)
             id_programme = f"Chronique{id_number}-{i+1}"
 
             ajout_programme = f"""
@@ -71,6 +75,10 @@ def AjouterEmission(titre, date, audio, programme) :
             """
             ajout_programme = ajout_programme.replace("→", "{").replace("←", "}")
             html_ajout += ajout_programme
+
+            if titre_programme == "Chronique scientifique" or titre_programme == "Chronique culturelle" or titre_programme == "Chronique touristique" or titre_programme == "Portrait" :
+                chroniques[titre_programme] = temps_programme_réel
+
 
         ajout_programme = f"""
                     </div>
@@ -88,6 +96,7 @@ def AjouterEmission(titre, date, audio, programme) :
         with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "w", encoding="utf-8") as f:
             f.write(str(soup))
             f.close()
+            
     except Exception as e:
         print(e)
         time.sleep(5)
