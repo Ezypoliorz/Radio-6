@@ -12,7 +12,7 @@ url_audio_émission = "Émissions/Musique test 3.mp3"
 id_number = 0
 
 
-def AjouterEmission(titre, date, audio, programme) :
+def AjouterEmission(titre, date, audio, programme, sujets) :
     try :
         with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "r", encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
@@ -22,6 +22,7 @@ def AjouterEmission(titre, date, audio, programme) :
         temps_programme = ""
         temps_programme_réel = 0
         liste_temps_programme_réel = []
+        noms_chroniques = ["Chronique scientifique", "Chronique culturelle", "Chronique touristique", "Portraits"]
         chroniques = {}
         titre_programme = ""
 
@@ -96,6 +97,12 @@ def AjouterEmission(titre, date, audio, programme) :
         with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "w", encoding="utf-8") as f:
             f.write(str(soup))
             f.close()
+
+        for i in range(len(noms_chroniques)) :
+            if noms_chroniques[i] in chroniques :
+                temps_chronique_début = chroniques[noms_chroniques[i]]
+                temps_chronique_fin = liste_temps_programme_réel[liste_temps_programme_réel.index(temps_chronique_début)+1]
+                sujet_chronique = sujets[noms_chroniques[i]]
             
     except Exception as e:
         print(e)
