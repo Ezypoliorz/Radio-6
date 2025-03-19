@@ -1,7 +1,5 @@
 #!/bin/bash
 
-MESSAGE = "Upload automatique"
-
 git add .
-git commit -m "$MESSAGE"
+git commit -m "Upload automatique"
 git push origin "main"
