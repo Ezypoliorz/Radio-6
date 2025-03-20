@@ -5,6 +5,7 @@ import sys
 import time
 import os
 from pydub import AudioSegment
+import subprocess
 
 titre_émission = "Titre"
 date_émission = "Date"
@@ -22,8 +23,9 @@ def AjouterEmission(titre, date, audio, programme, sujets) :
         temps_programme = ""
         temps_programme_réel = 0
         liste_temps_programme_réel = []
-        noms_chroniques = ["Chronique scientifique", "Chronique culturelle", "Chronique touristique", "Portraits"]
+        noms_chroniques = ["Chronique scientifique", "Chronique culturelle", "Chronique touristique", "Portrait"]
         chroniques = {}
+        noms_fichiers_chroniques = {"Chronique scientifique" : "/podcasts-chroniques-scientifiques.html", "Chronique culturelle" : "/podcasts-chroniques-culturelles.html", "Chronique touristique" : "/podcasts-chroniques-touristiques.html", "Portrait": "/podcasts-portraits.html"}
         titre_programme = ""
 
         html_ajout = f"""
@@ -106,7 +108,43 @@ def AjouterEmission(titre, date, audio, programme, sujets) :
 
                 audio_chronique = AudioSegment.from_mp3(audio)
                 audio_chronique = audio_chronique[temps_chronique_début:][:temps_chronique_fin]
-                audio_chronique.export(f"{noms_chroniques[i]} - {sujet_chronique}", format="mp3")
+                audio_chronique.export(f"{noms_chroniques[i]} - {sujet_chronique}.mp3", format="mp3")
+
+                with open(str(os.path.dirname(os.path.abspath(__file__))) + noms_fichiers_chroniques[noms_chroniques[i]], "r", encoding="utf-8") as f:
+                    soup = BeautifulSoup(f, "html.parser")
+
+                id_number = int(soup.find("div", {"class": "audio"})["id"].split("Audio")[-1]) + 1
+
+                html_ajout_chroniques = f"""
+
+        <div class="div-émission-background">
+            <div class="div-émission">
+                <div class="infos-émission">
+                    <h2 class="titre-émission">{sujet_chronique}</h2>
+                    <h3 class="date-émission">{titre} - {date}</h3>
+                </div>
+
+                <div class="div-audio-podcasts">
+                    <audio controls class="audio" id="Audio{id_number}">
+                        <source src="{noms_chroniques[i]} - {sujet_chronique}.mp3" type="audio/mpeg">
+                        Votre navigateur ne supporte pas l'élément audio.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+"""
+                soup_ajout_chroniques = BeautifulSoup(html_ajout_chroniques, "html.parser")
+
+                div = soup.find("div", {"class": "conteneur-podcasts"})
+                div.insert(0, soup_ajout_chroniques)
+
+                with open(str(os.path.dirname(os.path.abspath(__file__))) + noms_fichiers_chroniques[noms_chroniques[i]], "w", encoding="utf-8") as f:
+                    f.write(str(soup))
+                    f.close()
+
+        bat_upload_github = str(os.path.dirname(os.path.abspath(__file__))), "/UploadGitHub.bat"
+        subprocess.run([bat_upload_github], capture_output=False, text=False)
             
     except Exception as e:
         print(e)
