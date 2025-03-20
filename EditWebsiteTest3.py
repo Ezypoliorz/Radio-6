@@ -103,6 +103,10 @@ def AjouterEmission(titre, date, audio, programme, sujets) :
                 temps_chronique_début = chroniques[noms_chroniques[i]]
                 temps_chronique_fin = liste_temps_programme_réel[liste_temps_programme_réel.index(temps_chronique_début)+1]
                 sujet_chronique = sujets[noms_chroniques[i]]
+
+                audio_chronique = AudioSegment.from_mp3(audio)
+                audio_chronique = audio_chronique[temps_chronique_début:][:temps_chronique_fin]
+                audio_chronique.export(f"{noms_chroniques[i]} - {sujet_chronique}", format="mp3")
             
     except Exception as e:
         print(e)
