@@ -100,6 +100,14 @@ def AjouterEmission(titre, date, audio, programme, sujets) :
             f.write(str(soup))
             f.close()
 
+        app = ctk.CTk()
+        app.geometry("400x400")
+        app.title("EditWebsite")
+        ctk.set_appearance_mode("System")
+        ctk.set_default_color_theme("blue")
+
+        entrée_chronique_scientifique = ctk.CTkEntry(master=app, placeholder_text="Entrer le sujet de la chronique scientifique", width=165)
+
         for i in range(len(noms_chroniques)) :
             if noms_chroniques[i] in chroniques :
                 temps_chronique_début = chroniques[noms_chroniques[i]]
