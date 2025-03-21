@@ -12,7 +12,20 @@ date_émission = "Date"
 url_audio_émission = "Émissions/Musique test 3.mp3"
 id_number = 0
 
-def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date):
+def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits):
+    
+    if entrée_chronique_scientifique.get() != None:
+        sujets["Chronique scientifique"] = entrée_chronique_scientifique.get()
+
+    if entrée_chronique_culturelle.get() != None:
+        sujets["Chronique culturelle"] = entrée_chronique_culturelle.get()
+
+    if entrée_chronique_touristique.get() != None:
+        sujets["Chronique touristique"] = entrée_chronique_touristique.get()
+
+    if entrée_portraits.get() != None:
+        sujets["Portrait"] = entrée_portraits.get()
+    
     for i in range(len(noms_chroniques)) :
         if noms_chroniques[i] in chroniques :
             temps_chronique_début = chroniques[noms_chroniques[i]]
@@ -59,7 +72,7 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
     bat_upload_github = str(os.path.dirname(os.path.abspath(__file__))), "/UploadGitHub.bat"
     subprocess.run([bat_upload_github], capture_output=False, text=False)
 
-def AjouterEmission(titre, date, audio, programme, sujets) :
+def AjouterEmission(titre, date, audio, programme) :
     try :
         with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "r", encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
@@ -71,6 +84,7 @@ def AjouterEmission(titre, date, audio, programme, sujets) :
         liste_temps_programme_réel = []
         noms_chroniques = ["Chronique scientifique", "Chronique culturelle", "Chronique touristique", "Portrait"]
         chroniques = {}
+        sujets = {}
         noms_fichiers_chroniques = {"Chronique scientifique" : "/podcasts-chroniques-scientifiques.html", "Chronique culturelle" : "/podcasts-chroniques-culturelles.html", "Chronique touristique" : "/podcasts-chroniques-touristiques.html", "Portrait": "/podcasts-portraits.html"}
         titre_programme = ""
 
