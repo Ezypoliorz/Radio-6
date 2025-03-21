@@ -12,6 +12,52 @@ date_émission = "Date"
 url_audio_émission = "Émissions/Musique test 3.mp3"
 id_number = 0
 
+def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date):
+    for i in range(len(noms_chroniques)) :
+        if noms_chroniques[i] in chroniques :
+            temps_chronique_début = chroniques[noms_chroniques[i]]
+            temps_chronique_fin = liste_temps_programme_réel[liste_temps_programme_réel.index(temps_chronique_début)+1]
+            sujet_chronique = sujets[noms_chroniques[i]]
+
+            audio_chronique = AudioSegment.from_mp3(audio)
+            audio_chronique = audio_chronique[temps_chronique_début:][:temps_chronique_fin]
+            audio_chronique.export(f"{noms_chroniques[i]} - {sujet_chronique}.mp3", format="mp3")
+
+            with open(str(os.path.dirname(os.path.abspath(__file__))) + noms_fichiers_chroniques[noms_chroniques[i]], "r", encoding="utf-8") as f:
+                soup = BeautifulSoup(f, "html.parser")
+
+            id_number = int(soup.find("div", {"class": "audio"})["id"].split("Audio")[-1]) + 1
+
+            html_ajout_chroniques = f"""
+
+    <div class="div-émission-background">
+        <div class="div-émission">
+            <div class="infos-émission">
+                <h2 class="titre-émission">{sujet_chronique}</h2>
+                <h3 class="date-émission">{titre} - {date}</h3>
+            </div>
+
+            <div class="div-audio-podcasts">
+                <audio controls class="audio" id="Audio{id_number}">
+                    <source src="{noms_chroniques[i]} - {sujet_chronique}.mp3" type="audio/mpeg">
+                    Votre navigateur ne supporte pas l'élément audio.
+                </audio>
+            </div>
+        </div>
+    </div>
+
+"""
+            soup_ajout_chroniques = BeautifulSoup(html_ajout_chroniques, "html.parser")
+
+            div = soup.find("div", {"class": "conteneur-podcasts"})
+            div.insert(0, soup_ajout_chroniques)
+
+            with open(str(os.path.dirname(os.path.abspath(__file__))) + noms_fichiers_chroniques[noms_chroniques[i]], "w", encoding="utf-8") as f:
+                f.write(str(soup))
+                f.close()
+
+    bat_upload_github = str(os.path.dirname(os.path.abspath(__file__))), "/UploadGitHub.bat"
+    subprocess.run([bat_upload_github], capture_output=False, text=False)
 
 def AjouterEmission(titre, date, audio, programme, sujets) :
     try :
@@ -106,53 +152,25 @@ def AjouterEmission(titre, date, audio, programme, sujets) :
         ctk.set_appearance_mode("System")
         ctk.set_default_color_theme("blue")
 
-        entrée_chronique_scientifique = ctk.CTkEntry(master=app, placeholder_text="Entrer le sujet de la chronique scientifique", width=165)
+        entrée_chronique_scientifique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique scientifique", width=200)
+        entrée_chronique_culturelle = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique culturelle", width=200)
+        entrée_chronique_touristique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique touristique", width=200)
+        entrée_portraits = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème du portrait", width=200)
+        bouton_thèmes = ctk.ctk.CTkButton(master=app, text="Confirmer les informations", command=lambda: AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits), fg_color="white", text_color="black", hover_color="grey")
 
-        for i in range(len(noms_chroniques)) :
-            if noms_chroniques[i] in chroniques :
-                temps_chronique_début = chroniques[noms_chroniques[i]]
-                temps_chronique_fin = liste_temps_programme_réel[liste_temps_programme_réel.index(temps_chronique_début)+1]
-                sujet_chronique = sujets[noms_chroniques[i]]
+        if "Chronique scientifique" in chroniques :
+            entrée_chronique_scientifique.pack(pady=5)
 
-                audio_chronique = AudioSegment.from_mp3(audio)
-                audio_chronique = audio_chronique[temps_chronique_début:][:temps_chronique_fin]
-                audio_chronique.export(f"{noms_chroniques[i]} - {sujet_chronique}.mp3", format="mp3")
+        if "Chronique culturelle" in chroniques :
+            entrée_chronique_culturelle.pack(pady=5)
 
-                with open(str(os.path.dirname(os.path.abspath(__file__))) + noms_fichiers_chroniques[noms_chroniques[i]], "r", encoding="utf-8") as f:
-                    soup = BeautifulSoup(f, "html.parser")
+        if "Chronique touristique" in chroniques :
+            entrée_chronique_touristique.pack(pady=5)
 
-                id_number = int(soup.find("div", {"class": "audio"})["id"].split("Audio")[-1]) + 1
+        if "Portraits" in chroniques :
+            entrée_portraits.pack(pady=5)
 
-                html_ajout_chroniques = f"""
-
-        <div class="div-émission-background">
-            <div class="div-émission">
-                <div class="infos-émission">
-                    <h2 class="titre-émission">{sujet_chronique}</h2>
-                    <h3 class="date-émission">{titre} - {date}</h3>
-                </div>
-
-                <div class="div-audio-podcasts">
-                    <audio controls class="audio" id="Audio{id_number}">
-                        <source src="{noms_chroniques[i]} - {sujet_chronique}.mp3" type="audio/mpeg">
-                        Votre navigateur ne supporte pas l'élément audio.
-                    </audio>
-                </div>
-            </div>
-        </div>
-
-"""
-                soup_ajout_chroniques = BeautifulSoup(html_ajout_chroniques, "html.parser")
-
-                div = soup.find("div", {"class": "conteneur-podcasts"})
-                div.insert(0, soup_ajout_chroniques)
-
-                with open(str(os.path.dirname(os.path.abspath(__file__))) + noms_fichiers_chroniques[noms_chroniques[i]], "w", encoding="utf-8") as f:
-                    f.write(str(soup))
-                    f.close()
-
-        bat_upload_github = str(os.path.dirname(os.path.abspath(__file__))), "/UploadGitHub.bat"
-        subprocess.run([bat_upload_github], capture_output=False, text=False)
+        bouton_thèmes.pack(pady=10)
             
     except Exception as e:
         print(e)
