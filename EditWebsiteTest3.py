@@ -12,7 +12,7 @@ date_émission = "Date"
 url_audio_émission = "Émissions/Musique test 3.mp3"
 id_number = 0
 
-def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits):
+def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits, app):
     
     if entrée_chronique_scientifique.get() != None:
         sujets["Chronique scientifique"] = entrée_chronique_scientifique.get()
@@ -25,6 +25,8 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
 
     if entrée_portraits.get() != None:
         sujets["Portrait"] = entrée_portraits.get()
+
+    app.destroy()
     
     for i in range(len(noms_chroniques)) :
         if noms_chroniques[i] in chroniques :
@@ -170,7 +172,7 @@ def AjouterEmission(titre, date, audio, programme) :
         entrée_chronique_culturelle = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique culturelle", width=200)
         entrée_chronique_touristique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique touristique", width=200)
         entrée_portraits = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème du portrait", width=200)
-        bouton_thèmes = ctk.ctk.CTkButton(master=app, text="Confirmer les informations", command=lambda: AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits), fg_color="white", text_color="black", hover_color="grey")
+        bouton_thèmes = ctk.ctk.CTkButton(master=app, text="Confirmer les informations", command=lambda: AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits, app), fg_color="white", text_color="black", hover_color="grey")
 
         if "Chronique scientifique" in chroniques :
             entrée_chronique_scientifique.pack(pady=5)
