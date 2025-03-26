@@ -111,13 +111,8 @@ if (navigator.userAgent.match(/iPad|Android|Tablet/i)) { // Si l'utilisateur est
 
 document.getElementById("Bouton-nav-téléphone").onclick = function() {
 
+  document.getElementById("Div-nav-téléphone").style.display = "block";
   document.getElementById("Conteneur").style.display = "none";
   document.getElementById("Bouton-nav-téléphone").style.display = "none";
-  document.getElementById("Div-nav-téléphone").style.display = "block";
-  document.getElementById("Body").style.backgroundImage = "Images/Arrière-plan.svg";
-  document.getElementById("Body").style.backgroundSize = "cover";
-  document.getElementById("Body").style.backgroundRepeat = "no-repeat";
-  document.getElementById("Body").style.backgroundPosition = "center";
-  document.getElementById("Body").style.backgroundAttachment = "fixed";
 
 }

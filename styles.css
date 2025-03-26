@@ -560,6 +560,11 @@ body {
   .div-nav-téléphone{
 
     display: none;
+    background-image: url("Images/Arrière-plan.svg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
     position: absolute;
     align-items: center;
     justify-content: center;
@@ -578,8 +583,18 @@ body {
     text-align: center; 
     align-items: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin-bottom: -20px;
+    margin: 0 auto;
+    margin-bottom: 10px;
     line-height: 45px;
+    justify-content: center;
+
+  }
+
+  .contenu-menu-téléphone {
+
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
 
   }
 
@@ -606,9 +621,10 @@ body {
     background-color: black;
     height: 163px;
     width: 343px;
-    margin: 0 auto;
+    margin-left: 0 auto;
     border-radius: 10px;
     display: flex;
+    justify-self: center;
     padding: 2px;
     padding-bottom: 3px;
     margin-left: 5px;
