@@ -700,4 +700,66 @@ body {
   }
 
 
+
+
+
+  .div-accueil-background {
+  
+    background-image: url("Images/Arrière-plan.svg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: auto;
+    width: 343px;
+    margin: 0 auto;
+    border-radius: 10px;
+    display: flex;
+    padding: 2px;
+    padding-bottom: 4px;
+    margin-top: 20px;
+    margin-bottom: 30px ;
+  
+  }
+  
+  .div-accueil {
+    background-color:  #fbfbfb;
+    height: auto;
+    width: 340px;
+    border-radius: 8px;
+    margin: 0 auto;
+    margin-top: 1.5px;
+    display: block;
+  
+  }
+
+
+  .contenu-accueil{
+    text-align: justify;
+  }
+
+.div-images-accueil-ensemble {
+
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.div-images-accueil {
+
+  display: block;
+  margin: 0 auto;
+
+}
+
+.images-accueil {
+
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+
+}
+
 }

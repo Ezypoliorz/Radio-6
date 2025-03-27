@@ -23,8 +23,23 @@ for (let i = 0; i < infos.length; i++) { // Pour chaque élément de la liste
   let id_self = infos[i].id; // On récupère l'id de l'élément
   let id_self_number = id_self.match(/\d+/)[0]; // On récupère le nombre de l'id
   let id_target = "Programme-background" + (id_self_number); // On crée l'id de l'élément cible
+  const element = document.getElementById(id_target); // Remplacez 'monElement' par l'ID de votre élément
+  const style = window.getComputedStyle(element);
   document.getElementById(id_self).onclick = function() { // On crée un événement au clic
-  document.getElementById(id_target).style.display = "block"; // On affiche l'élément cible
+    if (style.display === 'none') {
+      for (let i = 0; i < infos.length; i++) {
+        let id_self = infos[i].id;
+        let id_self_number = id_self.match(/\d+/)[0];
+        let id_target = "Programme-background" + (id_self_number);
+        document.getElementById(id_target).style.display = "none";
+      
+      }
+      document.getElementById(id_target).style.display = "block"; // On affiche l'élément cible
+    }
+    else {
+      document.getElementById(id_target).style.display = "none";
+    }
+
   }
 
 }
@@ -107,6 +122,7 @@ audio.addEventListener('play', () => { // On crée un événement au lancement d
 
 if (navigator.userAgent.match(/iPad|Android|Tablet/i)) { // Si l'utilisateur est sur un iPad, un Android ou une tablette
   document.getElementById("Niveau-sonore").style.display = "none"; // On cache l'élément "Niveau-sonore"
+
 }
 
 document.getElementById("Bouton-nav-téléphone").onclick = function() {
