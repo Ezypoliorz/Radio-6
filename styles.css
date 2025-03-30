@@ -508,6 +508,12 @@ body {
 
 }
 
+#Div-bouton-podcast-background-téléphone {
+
+  display: none;
+
+}
+
 
 
 
@@ -538,7 +544,7 @@ body {
     align-items: center;
     justify-content: center;
     zoom: 1;
-
+    padding-right: 5px;
   }
 
   .conteneur {
@@ -759,6 +765,37 @@ body {
   margin: 0 auto;
   margin-top: 10px;
   display: flex;
+
+}
+
+.div-ligne {
+
+  display: none;
+
+}
+
+.div-bouton-podcast-background {
+
+
+  margin: 0 auto;
+  display: flex;
+  display: block;
+
+}
+
+.div-bouton-podcast-background:hover {
+
+
+  margin: 0 auto;
+  display: flex;
+  display: block;
+
+}
+
+#Div-bouton-podcast-background-téléphone {
+
+  display: block;
+  margin: 0 auto;
 
 }
 

@@ -2,8 +2,9 @@
 <html>
 <head>
   <title>Podcasts - Radio 6</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/svg" sizes="48x48" href="Images/Logo icone.svg">
+  <link href="styles.css" rel="stylesheet"/>
+  <link href="Images/Logo icone.svg" rel="icon" sizes="48x48" type="image/svg"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 </head>
 <body>
 
@@ -22,7 +23,26 @@
         </div>
     </div>
 
-    <div class="conteneur">
+    <div class="div-nav-téléphone" id="Div-nav-téléphone">
+        <div class="div-menu-téléphone" id="Div-menu-téléphone#">
+        <a href="#"><h2 class="contenu-menu-téléphone"></h2></a>
+        </div>
+        <div class="div-menu-téléphone" id="Div-menu-téléphone1">
+        <a href="index.html"><h2 class="contenu-menu-téléphone">Accueil</h2></a>
+        </div>
+        <div class="div-menu-téléphone" id="Div-menu-téléphone2">
+        <a href="émissions.html"><h2 class="contenu-menu-téléphone">Émissions</h2></a>
+        </div>
+        <div class="div-menu-téléphone" id="Div-menu-téléphone3">
+        <a href="podcasts.html"><h2 class="contenu-menu-téléphone">Podcasts</h2></a>
+        </div>
+    </div>
+
+    <div class="div-bouton-nav-téléphone" id="Bouton-nav-téléphone">
+        <img alt="" height="45px" id="Image-bouton-nav-téléphone" src=""/>
+        </div>
+
+    <div class="conteneur" id="Conteneur">
 
         <img class="logo-header" id="logo-header-podcast" src="Images/Logo header.png" alt="" width="425px">
 
@@ -38,10 +58,10 @@
             </div>
 
             <div class="div-bouton-podcast-background">
-                <div class="div-bouton-podcast" onclick="window.location.href='podcasts-actualités.html';">
+                <div class="div-bouton-podcast" onclick="window.location.href='podcasts-chroniques-culturelles.html';">
                     <div class="div-contenu-bouton-podcast">
-                        <img class="image-bouton-podcast" src="Images/Icone actualités.svg" alt="" height="50px">
-                        <h2 class="texte-bouton-podcast">Actualités du lycée</h2>
+                        <img class="image-bouton-podcast" src="Images/Icone chronique culturelle.svg" alt="" height="50px">
+                        <h2 class="texte-bouton-podcast">Chroniques culturelles</h2>
                     </div>
                 </div>
             </div>
@@ -70,30 +90,61 @@
 
         </div>
 
-        <div class="div-ligne">
-            
-            <div class="div-bouton-podcast-background">
-                <div class="div-bouton-podcast" onclick="window.location.href='podcasts-chroniques-culturelles.html';">
-                    <div class="div-contenu-bouton-podcast">
-                        <img class="image-bouton-podcast" src="Images/Icone chronique culturelle.svg" alt="" height="50px">
-                        <h2 class="texte-bouton-podcast">Chroniques culturelles</h2>
-                    </div>
+        <div id="Div-bouton-podcast-background-téléphone">
+
+            <br>
+            <br>
+
+        <div class="div-bouton-podcast-background">
+            <div class="div-bouton-podcast" onclick="window.location.href='podcasts-portraits.html';">
+                <div class="div-contenu-bouton-podcast">
+                    <img class="image-bouton-podcast" src="Images/Icone portraits.svg" alt="" height="50px">
+                    <h2 class="texte-bouton-podcast">Portraits</h2>
                 </div>
             </div>
-
-            <div class="div-bouton-podcast-background">
-                <div class="div-bouton-podcast" onclick="window.location.href='podcasts-fictions.html';">
-                    <div class="div-contenu-bouton-podcast">
-                        <img class="image-bouton-podcast" src="Images/Icone fictions.svg" alt="" height="50px">
-                        <h2 class="texte-bouton-podcast">Fictions</h2>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
+        <br>
+
+        <div class="div-bouton-podcast-background">
+            <div class="div-bouton-podcast" onclick="window.location.href='podcasts-chroniques-culturelles.html';">
+                <div class="div-contenu-bouton-podcast">
+                    <img class="image-bouton-podcast" src="Images/Icone chronique culturelle.svg" alt="" height="50px">
+                    <h2 class="texte-bouton-podcast">Chroniques culturelles</h2>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="div-bouton-podcast-background">
+            <div class="div-bouton-podcast" onclick="window.location.href='podcasts-chroniques-scientifiques.html';">
+                <div class="div-contenu-bouton-podcast">
+                    <img class="image-bouton-podcast" src="Images/Icone chronique scientifique.svg" alt="" height="50px">
+                    <h2 class="texte-bouton-podcast">Chroniques scientifiques</h2>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="div-bouton-podcast-background">
+            <div class="div-bouton-podcast" onclick="window.location.href='podcasts-chroniques-touristiques.html';">
+                <div class="div-contenu-bouton-podcast">
+                    <img class="image-bouton-podcast" src="Images/Icone chronique touristique.svg" alt="" height="50px">
+                    <h2 class="texte-bouton-podcast">Chroniques touristiques</h2>
+                </div>
+            </div>
+        </div>
+
+        <br>
 
     </div>
 
-    <script src="script-podcasts.js"></script>
+
+    </div>
+
+    <script src="script-podcasts-accueil.js"></script>
 
 </body>
+</html>
