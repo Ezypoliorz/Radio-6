@@ -418,7 +418,7 @@ body {
 
   background-color: black;
   height: fit-content + 4px;
-  width: 366px;
+  width: 353px;
   margin: 0 auto;
   border-radius: 10px;
   display: flex;
@@ -441,7 +441,7 @@ body {
   background-position: center;
   background-attachment: fixed;
   height: fit-content + 4px;
-  width: 366px;
+  width: 353px;
   margin: 0 auto;
   border-radius: 10px;
   display: flex;
@@ -460,7 +460,7 @@ body {
 
   background-color: #fbfbfb;
   height: fit-content;
-  width: 360px;
+  width: 347px;
   border-radius: 8px;
   margin: 0 auto;
   margin-top: 1.5px;
