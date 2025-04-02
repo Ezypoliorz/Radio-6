@@ -126,9 +126,17 @@ if (navigator.userAgent.match(/iPad|Android|Tablet/i)) { // Si l'utilisateur est
 }
 
 document.getElementById("Bouton-nav-téléphone").onclick = function() {
+  const element = document.getElementById("Conteneur");
+  const style = window.getComputedStyle(element);
+  if (style.display === 'none') {
+    document.getElementById("Div-nav-téléphone").style.display = "none";
+    document.getElementById("Conteneur").style.display = "block";
+  }
 
-  document.getElementById("Div-nav-téléphone").style.display = "block";
-  document.getElementById("Conteneur").style.display = "none";
-  document.getElementById("Bouton-nav-téléphone").style.display = "none";
+  else{
+    document.getElementById("Div-nav-téléphone").style.display = "block";
+    document.getElementById("Conteneur").style.display = "none";
+  }
+
 
 }
