@@ -475,6 +475,13 @@ body {
   margin: 5px auto;
   margin-top: 10px;
   display: block;
+
+  -webkit-touch-callout: none; /* Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
   
 }
 
