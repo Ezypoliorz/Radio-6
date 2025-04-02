@@ -133,7 +133,6 @@ body {
   .div-émission {
 
     background-color: #fbfbfb;
-    height: 160px;
     width: 500px;
     border-radius: 8px;
     margin: 0 auto;
@@ -625,7 +624,7 @@ body {
   .div-émission-background {
 
     background-color: black;
-    height: 163px;
+    height: auto;
     width: 343px;
     margin: 0 auto;
     border-radius: 10px;
@@ -644,7 +643,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    height: 163px;
+    height: auto;
     width: 343px;
     margin: 0 auto;
     border-radius: 10px;
@@ -659,7 +658,8 @@ body {
   .div-émission {
 
     background-color: #fbfbfb;
-    height: 160px;
+    height: auto;
+    padding-bottom: 15px;
     width: 340px;
     border-radius: 8px;
     margin: 0 auto;
