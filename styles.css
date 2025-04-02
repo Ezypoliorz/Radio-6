@@ -611,8 +611,18 @@ body {
     left: 0px;
     height: 55px;
     width: 55px;
-    background-color: greenyellow;
+    background-color: rgb(223, 222, 222);
+    border-bottom-right-radius: 10px;
 
+  }
+
+  #Image-bouton-nav-téléphone {
+
+    margin: 0 auto;
+    display: flex;
+    margin-top: 2px;
+    
+  
   }
 
   .logo-header {
