@@ -9,11 +9,6 @@ from subprocess import Popen, PIPE, STDOUT
 ffmpeg_path = "C:/Users/oscar/Documents/GitHub/Radio-6/Utilities/ffmpeg-7.1.1-full_build/bin"
 AudioSegment.converter = "ffmpeg"
 
-bat_upload_github = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/"), "/UploadGitHub.bat"
-
-p = Popen("UploadGitHub.bat", shell=True, stdout=PIPE, stderr=STDOUT)
-stdout, stderr = p.communicate()
-
 """
 00:00 - Introduction
 00:42 - Chronique scientifique
@@ -96,6 +91,9 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
             with open(str(os.path.dirname(os.path.abspath(__file__))) + noms_fichiers_chroniques[noms_chroniques[i]], "w", encoding="utf-8") as f:
                 f.write(str(soup))
                 f.close()
+
+    p = Popen("UploadGitHub.bat", shell=True, stdout=PIPE, stderr=STDOUT)
+    stdout, stderr = p.communicate()
 
 def AjouterEmission(titre, date, audio, programme) :
     with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "r", encoding="utf-8") as f:
