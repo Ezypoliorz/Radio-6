@@ -2,10 +2,23 @@ import tkinter as tk
 import customtkinter as ctk
 from bs4 import BeautifulSoup
 import sys
-import time
 import os
 from pydub import AudioSegment
-import subprocess
+from subprocess import Popen, PIPE, STDOUT
+
+ffmpeg_path = "C:/Users/oscar/Documents/GitHub/Radio-6/Utilities/ffmpeg-7.1.1-full_build/bin"
+AudioSegment.converter = "ffmpeg"
+
+bat_upload_github = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/"), "/UploadGitHub.bat"
+
+p = Popen("UploadGitHub.bat", shell=True, stdout=PIPE, stderr=STDOUT)
+stdout, stderr = p.communicate()
+
+"""
+00:00 - Introduction
+00:42 - Chronique scientifique
+01:30 - Conclusion
+"""
 
 titre_émission = "Titre"
 date_émission = "Date"
@@ -14,6 +27,8 @@ id_number = 0
 
 def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits, app):
     
+    print("AjouterSujets")
+
     if entrée_chronique_scientifique.get() != None:
         sujets["Chronique scientifique"] = entrée_chronique_scientifique.get()
 
@@ -27,6 +42,8 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
         sujets["Portrait"] = entrée_portraits.get()
 
     app.destroy()
+
+    print("noms_chroniques ", noms_chroniques)
     
     for i in range(len(noms_chroniques)) :
         if noms_chroniques[i] in chroniques :
@@ -34,14 +51,23 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
             temps_chronique_fin = liste_temps_programme_réel[liste_temps_programme_réel.index(temps_chronique_début)+1]
             sujet_chronique = sujets[noms_chroniques[i]]
 
-            audio_chronique = AudioSegment.from_mp3(audio)
-            audio_chronique = audio_chronique[temps_chronique_début:][:temps_chronique_fin]
-            audio_chronique.export(f"{noms_chroniques[i]} - {sujet_chronique}.mp3", format="mp3")
+            print("temps_chronique_début ", temps_chronique_début)
+            print("temps_chronique_fin ", temps_chronique_fin)
+            print("sujet_chronique ", sujet_chronique)
+            print("audio ", audio)
 
-            with open(str(os.path.dirname(os.path.abspath(__file__))) + noms_fichiers_chroniques[noms_chroniques[i]], "r", encoding="utf-8") as f:
+            audio_chronique = AudioSegment.from_file(audio)
+            audio_chronique = audio_chronique[temps_chronique_début*1000:temps_chronique_fin*1000]
+            audio_chronique.export(f"{noms_chroniques[i]} - {sujet_chronique}.wav", format="WAV")
+
+            print("url fichier ", str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + noms_fichiers_chroniques[noms_chroniques[i]])
+
+
+            with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + noms_fichiers_chroniques[noms_chroniques[i]], "r", encoding="utf-8") as f:
                 soup = BeautifulSoup(f, "html.parser")
+                print("soup ", soup)
 
-            id_number = int(soup.find("div", {"class": "audio"})["id"].split("Audio")[-1]) + 1
+            id_number = int(soup.find("audio", {"class": "audio"})["id"].split("Audio")[-1]) + 1
 
             html_ajout_chroniques = f"""
 
@@ -71,126 +97,123 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
                 f.write(str(soup))
                 f.close()
 
-    bat_upload_github = str(os.path.dirname(os.path.abspath(__file__))), "/UploadGitHub.bat"
-    subprocess.run([bat_upload_github], capture_output=False, text=False)
-
 def AjouterEmission(titre, date, audio, programme) :
-    try :
-        with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "r", encoding="utf-8") as f:
-            soup = BeautifulSoup(f, "html.parser")
+    with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "r", encoding="utf-8") as f:
+        soup = BeautifulSoup(f, "html.parser")
 
-        id_number = int(soup.find("div", {"class": "infos"})["id"].split("Infos")[-1]) + 1
-        id_programme = ""
-        temps_programme = ""
-        temps_programme_réel = 0
-        liste_temps_programme_réel = []
-        noms_chroniques = ["Chronique scientifique", "Chronique culturelle", "Chronique touristique", "Portrait"]
-        chroniques = {}
-        sujets = {}
-        noms_fichiers_chroniques = {"Chronique scientifique" : "/podcasts-chroniques-scientifiques.html", "Chronique culturelle" : "/podcasts-chroniques-culturelles.html", "Chronique touristique" : "/podcasts-chroniques-touristiques.html", "Portrait": "/podcasts-portraits.html"}
-        titre_programme = ""
+    id_number = int(soup.find("div", {"class": "infos"})["id"].split("Infos")[-1]) + 1
+    id_programme = ""
+    temps_programme = ""
+    temps_programme_réel = 0
+    liste_temps_programme_réel = []
+    noms_chroniques = ["Chronique scientifique", "Chronique culturelle", "Chronique touristique", "Portrait"]
+    chroniques = {}
+    sujets = {}
+    noms_fichiers_chroniques = {"Chronique scientifique" : "/podcasts-chroniques-scientifiques.html", "Chronique culturelle" : "/podcasts-chroniques-culturelles.html", "Chronique touristique" : "/podcasts-chroniques-touristiques.html", "Portrait": "/podcasts-portraits.html"}
+    titre_programme = ""
 
-        html_ajout = f"""
+    html_ajout = f"""
 
-                <div class="div-émission-background">
-                    <div class="div-émission">
-                        <div class="infos-émission">
-                            <h2 class="titre-émission">{titre}</h2>
-                            <h3 class="date-émission">{date}</h3>
-                        </div>
-
-                        <div class="infos" id="Infos{id_number}"><img src="Images/Programme.svg" alt="" height="45px"></div>
-
-                        <br>
-
-                        <div class="div-audio">
-                            <audio controls class="audio" id="Audio{id_number}">
-                                <source src="{audio}" type="audio/mpeg">
-                                Votre navigateur ne supporte pas l'élément audio.
-                            </audio>
-                        </div>
+            <div class="div-émission-background">
+                <div class="div-émission">
+                    <div class="infos-émission">
+                        <h2 class="titre-émission">{titre}</h2>
+                        <h3 class="date-émission">{date}</h3>
                     </div>
-                </div>
 
-            <div class="div-programme-background" id="Programme-background{id_number}">
-                <div class="div-programme-ensemble">
-                    <div class="div-programme">
-                        <h2 class="programme">Programme de l'émission :</h2>
-        """
-        for i in range(len(programme)) :
-            titre_programme = programme[i].split(" - ")[1]
-            temps_programme = programme[i].split(" - ")[0]
+                    <div class="infos" id="Infos{id_number}"><img src="Images/Programme.svg" alt="" height="45px"></div>
 
-            if programme[i].split(" - ")[0].split(":")[0] == "0" :
-                minute_programme_réel = int(programme[i].split(" - ")[0].split(":")[0][:-1])*60
-            else :
-                minute_programme_réel = int(programme[i].split(" - ")[0].split(":")[0])*60
+                    <br>
 
-            if programme[i].split(" - ")[0].split(":")[1] == "0" :
-                seconde_programme_réel = int(programme[i].split(" - ")[0].split(":")[1][:-1])
-            else :
-                seconde_programme_réel = int(programme[i].split(" - ")[0].split(":")[1])
-
-            temps_programme_réel = minute_programme_réel + seconde_programme_réel
-            liste_temps_programme_réel.append(temps_programme_réel)
-            id_programme = f"Chronique{id_number}-{i+1}"
-
-            ajout_programme = f"""
-                            <h3 class="programme" id="{id_programme}">• {temps_programme} - {titre_programme}</h3><script>document.getElementById("{id_programme}").onclick = function () →document.getElementById("Audio{id_number}").currentTime = {temps_programme_réel}; document.getElementById("Audio{id_number}").play();←</script>
-            """
-            ajout_programme = ajout_programme.replace("→", "{").replace("←", "}")
-            html_ajout += ajout_programme
-
-            if titre_programme == "Chronique scientifique" or titre_programme == "Chronique culturelle" or titre_programme == "Chronique touristique" or titre_programme == "Portrait" :
-                chroniques[titre_programme] = temps_programme_réel
-
-
-        ajout_programme = f"""
+                    <div class="div-audio">
+                        <audio controls class="audio" id="Audio{id_number}">
+                            <source src="{audio}" type="audio/mpeg">
+                            Votre navigateur ne supporte pas l'élément audio.
+                        </audio>
                     </div>
-                    <div class="fermer" id="Close{id_number}"><img src="Images/Fermer.svg" alt="" height="45px"></div>
                 </div>
             </div>
+
+        <div class="div-programme-background" id="Programme-background{id_number}">
+            <div class="div-programme-ensemble">
+                <div class="div-programme">
+                    <h2 class="programme">Programme de l'émission :</h2>
+    """
+    for i in range(len(programme)) :
+        titre_programme = programme[i].split(" - ")[1]
+        temps_programme = programme[i].split(" - ")[0]
+
+        if programme[i].split(" - ")[0].split(":")[0] == "0" :
+            minute_programme_réel = int(programme[i].split(" - ")[0].split(":")[0][:-1])*60
+        else :
+            minute_programme_réel = int(programme[i].split(" - ")[0].split(":")[0])*60
+
+        if programme[i].split(" - ")[0].split(":")[1] == "0" :
+            seconde_programme_réel = int(programme[i].split(" - ")[0].split(":")[1][:-1])
+        else :
+            seconde_programme_réel = int(programme[i].split(" - ")[0].split(":")[1])
+
+        temps_programme_réel = minute_programme_réel + seconde_programme_réel
+        liste_temps_programme_réel.append(temps_programme_réel)
+        id_programme = f"Chronique{id_number}-{i+1}"
+
+        ajout_programme = f"""
+                        <h3 class="programme" id="{id_programme}">• {temps_programme} - {titre_programme}</h3><script>document.getElementById("{id_programme}").onclick = function () →document.getElementById("Audio{id_number}").currentTime = {temps_programme_réel}; document.getElementById("Audio{id_number}").play();←</script>
         """
+        ajout_programme = ajout_programme.replace("→", "{").replace("←", "}")
         html_ajout += ajout_programme
 
-        soup_ajout = BeautifulSoup(html_ajout, "html.parser")
+        if titre_programme == "Chronique scientifique" or titre_programme == "Chronique culturelle" or titre_programme == "Chronique touristique" or titre_programme == "Portrait" :
+            chroniques[titre_programme] = temps_programme_réel
 
-        div = soup.find("div", {"class": "conteneur-émissions"})
-        div.insert(0, soup_ajout)
 
-        with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "w", encoding="utf-8") as f:
-            f.write(str(soup))
-            f.close()
+    ajout_programme = f"""
+                </div>
+                <div class="fermer" id="Close{id_number}"><img src="Images/Fermer.svg" alt="" height="45px"></div>
+            </div>
+        </div>
+    """
+    html_ajout += ajout_programme
 
-        app = ctk.CTk()
-        app.geometry("400x400")
-        app.title("EditWebsite")
-        ctk.set_appearance_mode("System")
-        ctk.set_default_color_theme("blue")
+    soup_ajout = BeautifulSoup(html_ajout, "html.parser")
 
-        entrée_chronique_scientifique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique scientifique", width=200)
-        entrée_chronique_culturelle = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique culturelle", width=200)
-        entrée_chronique_touristique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique touristique", width=200)
-        entrée_portraits = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème du portrait", width=200)
-        bouton_thèmes = ctk.ctk.CTkButton(master=app, text="Confirmer les informations", command=lambda: AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits, app), fg_color="white", text_color="black", hover_color="grey")
+    div = soup.find("div", {"class": "conteneur-émissions"})
+    div.insert(0, soup_ajout)
 
-        if "Chronique scientifique" in chroniques :
-            entrée_chronique_scientifique.pack(pady=5)
+    with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "w", encoding="utf-8") as f:
+        f.write(str(soup))
+        f.close()
 
-        if "Chronique culturelle" in chroniques :
-            entrée_chronique_culturelle.pack(pady=5)
+    app = ctk.CTk()
+    app.geometry("400x400")
+    app.title("EditWebsite")
+    ctk.set_appearance_mode("System")
 
-        if "Chronique touristique" in chroniques :
-            entrée_chronique_touristique.pack(pady=5)
+    entrée_chronique_scientifique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique scientifique", width=200)
+    entrée_chronique_culturelle = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique culturelle", width=200)
+    entrée_chronique_touristique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique touristique", width=200)
+    entrée_portraits = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème du portrait", width=200)
+    bouton_thèmes = ctk.CTkButton(master=app, text="Confirmer les informations", command=lambda: AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits, app), fg_color="white", text_color="black", hover_color="grey")
 
-        if "Portraits" in chroniques :
-            entrée_portraits.pack(pady=5)
+    print("chroniques ", chroniques)
 
-        bouton_thèmes.pack(pady=10)
+    if "Chronique scientifique" in chroniques :
+        entrée_chronique_scientifique.pack(pady=5)
+        print("Chronique scientifique")
+
+    if "Chronique culturelle" in chroniques :
+        entrée_chronique_culturelle.pack(pady=5)
+
+    if "Chronique touristique" in chroniques :
+        entrée_chronique_touristique.pack(pady=5)
+
+    if "Portraits" in chroniques :
+        entrée_portraits.pack(pady=5)
+
+    bouton_thèmes.pack(pady=10)
+
+    app.mainloop()
             
-    except Exception as e:
-        print(e)
-        time.sleep(5)
 
 def TitreDate() :
     global titre_émission
