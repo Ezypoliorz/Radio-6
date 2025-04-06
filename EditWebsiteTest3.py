@@ -55,6 +55,13 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
             audio_chronique = audio_chronique[temps_chronique_début*1000:temps_chronique_fin*1000]
             audio_chronique.export(f"{noms_chroniques[i]} - {sujet_chronique}.wav", format="WAV")
 
+            source_path = f"{noms_chroniques[i]} - {sujet_chronique}.wav"
+            destination_path = f"Émissions/{noms_chroniques[i]} - {sujet_chronique}.wav"
+            os.rename(source_path, destination_path)
+
+            source_path = "/chemin/vers/le/fichier/source.txt"
+            destination_path = "/chemin/vers/le/nouveau/dossier/destination.txt"
+
             print("url fichier ", str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + noms_fichiers_chroniques[noms_chroniques[i]])
 
 
