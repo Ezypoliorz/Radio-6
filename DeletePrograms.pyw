@@ -2,7 +2,8 @@ import tkinter as tk # Tkinter : Interface graphique
 import customtkinter as ctk # CustomTkinter : Version améliorée de Tkinter
 from bs4 import BeautifulSoup # BeautifulSoup : Récupération de fichiers HTML
 import os # OS : Gestion des fichiers et répertoires
-import re 
+import re
+from subprocess import Popen, PIPE, STDOUT # Subprocess : Exécution du fichier Batch
 
 def SupprimerEmission(entrée_titre, app):
     titre = entrée_titre.get()
@@ -11,46 +12,63 @@ def SupprimerEmission(entrée_titre, app):
 
     with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/émissions.html", "r", encoding="utf-8") as f:
         soup = BeautifulSoup(f, "html.parser")
-        balise_titre = soup.find('h2', string=titre)
-        if balise_titre :
-            div_émission = balise_titre.parent.parent.parent
-            div_émission.decompose()
-            label_état.configure(text=f"L'émission \"{titre}\" et ses chroniques ont été supprimées !")
-        else :
-            label_état.configure(text=f"L'émission \"{titre}\" n'existe pas", text_color="red")
+        f.close()
+    balise_titre = soup.find('h2', string=titre)
+    if balise_titre :
+        div_émission = balise_titre.parent.parent.parent
+        div_émission.decompose()
+        soup.find("div", {"class": "div-programme-background"}).decompose()
+        with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/émissions.html", "w", encoding="utf-8") as f:
+            f.write(soup.prettify())
+            f.close()
+        label_état.configure(text=f"L'émission \"{titre}\" et ses chroniques ont été supprimées !")
+    else :
+        label_état.configure(text=f"L'émission \"{titre}\" n'existe pas", text_color="red")
         
     with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/podcasts-chroniques-scientifiques.html", "r", encoding="utf-8") as s:
         soup_s = BeautifulSoup(s, "html.parser")
-        if soup_s.find('h2', string=re.compile(re.escape(f"{titre} - "))):
-            soup_s.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
-            s.write(soup_s.prettify())
         s.close()
-
-    with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/podcasts-chroniques-touristiques.html", "r", encoding="utf-8") as t:
-        soup_t = BeautifulSoup(t, "html.parser")
-        if soup_t.find('h2', string=re.compile(re.escape(f"{titre} - "))):
-            soup_t.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
-            t.write(soup_t.prettify())
-        t.close()
+    if soup_s.find('h2', string=re.compile(re.escape(f"{titre} - "))):
+        soup_s.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
+        with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/podcasts-chroniques-scientifiques.html", "w", encoding="utf-8") as s:
+            s.write(soup_s.prettify())
+            s.close()
 
     with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/podcasts-chroniques-culturelles.html", "r", encoding="utf-8") as c:
         soup_c = BeautifulSoup(c, "html.parser")
-        if soup_c.find('h2', string=re.compile(re.escape(f"{titre} - "))):
-            soup_c.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
-            c.write(soup_c.prettify())
         c.close()
+    if soup_c.find('h2', string=re.compile(re.escape(f"{titre} - "))):
+        soup_c.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
+        with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/podcasts-chroniques-culturelles.html", "w", encoding="utf-8") as c:
+            c.write(soup_c.prettify())
+            c.close()
+
+    with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/podcasts-chroniques-touristiques.html", "r", encoding="utf-8") as t:
+        soup_t = BeautifulSoup(t, "html.parser")
+        t.close()
+    if soup_t.find('h2', string=re.compile(re.escape(f"{titre} - "))):
+        soup_t.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
+        with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/podcasts-chroniques-scientifiques.html", "w", encoding="utf-8") as t:
+            t.write(soup_t.prettify())
+            t.close()
 
     with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/podcasts-portraits.html", "r", encoding="utf-8") as p:
         soup_p = BeautifulSoup(p, "html.parser")
-        if soup_p.find('h2', string=re.compile(re.escape(f"{titre} - "))):
-            soup_p.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
-            p.write(soup_p.prettify())
         p.close()
+    if soup_p.find('h2', string=re.compile(re.escape(f"{titre} - "))):
+        soup_p.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
+        with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + "/podcasts-portraits.html", "w", encoding="utf-8") as p:
+            p.write(soup_p.prettify())
+            p.close()
+
+    p = Popen("UploadGitHub.bat", shell=True, stdout=PIPE, stderr=STDOUT)
+    stdout, stderr = p.communicate()
 
     label_état.pack(pady=10)
 
+
 app = ctk.CTk()
-app.geometry("400x700")
+app.geometry("700x400")
 app.title("EditWebsite")
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
