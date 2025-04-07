@@ -1,24 +1,18 @@
-import tkinter as tk
-import customtkinter as ctk
-from bs4 import BeautifulSoup
-import sys
-import os
-from pydub import AudioSegment
-from subprocess import Popen, PIPE, STDOUT
+import tkinter as tk # Tkinter : Interface graphique
+import customtkinter as ctk # CustomTkinter : Version améliorée de Tkinter
+from bs4 import BeautifulSoup # BeautifulSoup : Récupération de fichiers HTML 
+import sys # Sys : Gestion des erreurs
+import os # OS : Gestion des fichiers et répertoires
+from pydub import AudioSegment # Pydub : Manipulation de fichiers audio
+from subprocess import Popen, PIPE, STDOUT # Subprocess : Exécution du fichier Batch
 
-ffmpeg_path = "C:/Users/oscar/Documents/GitHub/Radio-6/Utilities/ffmpeg-7.1.1-full_build/bin"
+
+titre_émission = "Titre" # Titre de l'émission
+date_émission = "Date" # Date de l'émission
+url_audio_émission = "Émissions/Musique test 3.mp3" # URL du fichier audio
+id_number = 0 # ID des divs HTML de l'émission
+
 AudioSegment.converter = "ffmpeg"
-
-"""
-00:00 - Introduction
-00:42 - Chronique scientifique
-01:30 - Conclusion
-"""
-
-titre_émission = "Titre"
-date_émission = "Date"
-url_audio_émission = "Émissions/Musique test 3.mp3"
-id_number = 0
 
 def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits, app):
     
@@ -194,10 +188,10 @@ def AjouterEmission(titre, date, audio, programme) :
     app.title("EditWebsite")
     ctk.set_appearance_mode("System")
 
-    entrée_chronique_scientifique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique scientifique", width=200)
-    entrée_chronique_culturelle = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique culturelle", width=200)
-    entrée_chronique_touristique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique touristique", width=200)
-    entrée_portraits = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème du portrait", width=200)
+    entrée_chronique_scientifique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique scientifique", width=250)
+    entrée_chronique_culturelle = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique culturelle", width=250)
+    entrée_chronique_touristique = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème de la chronique touristique", width=250)
+    entrée_portraits = ctk.CTkEntry(master=app, placeholder_text="Entrer le thème du portrait", width=250)
     bouton_thèmes = ctk.CTkButton(master=app, text="Confirmer les informations", command=lambda: AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits, app), fg_color="white", text_color="black", hover_color="grey")
 
     print("chroniques ", chroniques)
@@ -219,7 +213,6 @@ def AjouterEmission(titre, date, audio, programme) :
 
     app.mainloop()
             
-
 def TitreDate() :
     global titre_émission
     global date_émission
