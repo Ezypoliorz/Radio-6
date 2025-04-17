@@ -1,3 +1,6 @@
+#  » EditWebsite
+#  » © Web Radio du lycée Arcisse de Caumont, 2025
+
 import tkinter as tk # Tkinter : Interface graphique
 import customtkinter as ctk # CustomTkinter : Version améliorée de Tkinter
 from bs4 import BeautifulSoup # BeautifulSoup : Récupération de fichiers HTML 
@@ -12,11 +15,12 @@ date_émission = "Date" # Date de l'émission
 url_audio_émission = "Émissions/Musique test 3.mp3" # URL du fichier audio
 id_number = 0 # ID des divs HTML de l'émission
 
+username = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split('Users/')[1].split('/')[0]
+repository_path = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split(username)[0] + username + "/Documents/GitHub/Radio-6"
+
 AudioSegment.converter = "ffmpeg"
 
 def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_temps_programme_réel, sujets, audio, titre, date, entrée_chronique_scientifique, entrée_chronique_culturelle, entrée_chronique_touristique, entrée_portraits, app):
-    
-    print("AjouterSujets")
 
     if entrée_chronique_scientifique.get() != None:
         sujets["Chronique scientifique"] = entrée_chronique_scientifique.get()
@@ -31,19 +35,12 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
         sujets["Portrait"] = entrée_portraits.get()
 
     app.destroy()
-
-    print("noms_chroniques ", noms_chroniques)
     
     for i in range(len(noms_chroniques)) :
         if noms_chroniques[i] in chroniques :
             temps_chronique_début = chroniques[noms_chroniques[i]]
             temps_chronique_fin = liste_temps_programme_réel[liste_temps_programme_réel.index(temps_chronique_début)+1]
             sujet_chronique = sujets[noms_chroniques[i]]
-
-            print("temps_chronique_début ", temps_chronique_début)
-            print("temps_chronique_fin ", temps_chronique_fin)
-            print("sujet_chronique ", sujet_chronique)
-            print("audio ", audio)
 
             audio_chronique = AudioSegment.from_file(audio)
             audio_chronique = audio_chronique[temps_chronique_début*1000:temps_chronique_fin*1000]
@@ -56,10 +53,7 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
             source_path = "/chemin/vers/le/fichier/source.txt"
             destination_path = "/chemin/vers/le/nouveau/dossier/destination.txt"
 
-            print("url fichier ", str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + noms_fichiers_chroniques[noms_chroniques[i]])
-
-
-            with open(str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + noms_fichiers_chroniques[noms_chroniques[i]], "r", encoding="utf-8") as f:
+            with open(repository_path + noms_fichiers_chroniques[noms_chroniques[i]], "r", encoding="utf-8") as f:
                 soup = BeautifulSoup(f, "html.parser")
                 print("soup ", soup)
 
@@ -89,7 +83,7 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
             div = soup.find("div", {"class": "conteneur-podcasts"})
             div.insert(0, soup_ajout_chroniques)
 
-            with open(str(os.path.dirname(os.path.abspath(__file__))) + noms_fichiers_chroniques[noms_chroniques[i]], "w", encoding="utf-8") as f:
+            with open(repository_path + noms_fichiers_chroniques[noms_chroniques[i]], "w", encoding="utf-8") as f:
                 f.write(str(soup))
                 f.close()
 
@@ -97,7 +91,7 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
     stdout, stderr = p.communicate()
 
 def AjouterEmission(titre, date, audio, programme) :
-    with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "r", encoding="utf-8") as f:
+    with open(repository_path + "/émissions.html", "r", encoding="utf-8") as f:
         soup = BeautifulSoup(f, "html.parser")
 
     id_number = int(soup.find("div", {"class": "infos"})["id"].split("Infos")[-1]) + 1
@@ -179,7 +173,7 @@ def AjouterEmission(titre, date, audio, programme) :
     div = soup.find("div", {"class": "conteneur-émissions"})
     div.insert(0, soup_ajout)
 
-    with open(str(os.path.dirname(os.path.abspath(__file__))) + "/émissions.html", "w", encoding="utf-8") as f:
+    with open(repository_path + "/émissions.html", "w", encoding="utf-8") as f:
         f.write(str(soup))
         f.close()
 
@@ -229,7 +223,8 @@ def RecupAudio() :
     global bouton_url_audio
     global label_url_audio
     bouton_url_audio.configure(text="Changer le fichier audio")
-    url_audio_émission = tk.filedialog.askopenfilename(title="Sélectionner l'audio", filetypes=(("Fichiers MP", "*.mp3"), ("Tous les fichiers", "*.*")))
+    url_audio_émission = tk.filedialog.askopenfilename(title="Sélectionner l'audio",
+                                                       filetypes=(("Fichiers MP3", "*.mp3"), ("Tous les fichiers", "*.*")))
     label_url_audio.configure(text=f"Fichier audio : " + url_audio_émission.split("Émissions/")[-1])
     url_audio_émission = "Émissions" + str(url_audio_émission.split("Émissions")[-1])
     
