@@ -31,7 +31,6 @@ def SupprimerEmission(entrée_titre, app):
         label_état.configure(text=f"L'émission \"{titre}\" et ses chroniques ont été supprimées !")
     else :
         label_état.configure(text=f"L'émission \"{titre}\" n'existe pas", text_color="red")
-        print("émission inexistante")
         
     with open(repository_path + "/podcasts-chroniques-scientifiques.html", "r", encoding="utf-8") as s:
         soup_s = BeautifulSoup(s, "html.parser")
@@ -84,7 +83,7 @@ entrée_titre.pack(pady=10)
 bouton_titre_date = ctk.CTkButton(master=app, text="Supprimer", command=lambda: SupprimerEmission(entrée_titre, app))
 bouton_titre_date.pack(pady=10)
 
-label_état = ctk.CTkLabel(master=app, text="Label état")
+label_état = ctk.CTkLabel(master=app, text="")
 label_état.pack(pady=10)
 
 app.mainloop()
