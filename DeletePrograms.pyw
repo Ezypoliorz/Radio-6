@@ -16,7 +16,7 @@ repository_path = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", 
 def SupprimerEmission(entrée_titre, app):
     titre = entrée_titre.get()
 
-    label_état = ctk.CTkLabel(master=app, text="")
+    label_état = ctk.CTkLabel(master=app, text="Label état")
 
     with open(repository_path + "/émissions.html", "r", encoding="utf-8") as f:
         soup = BeautifulSoup(f, "html.parser")
