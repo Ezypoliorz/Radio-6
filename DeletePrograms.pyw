@@ -72,10 +72,6 @@ def SupprimerEmission(entrée_titre, app):
     p = Popen(repository_path + "/UploadGitHub.bat", shell=True, stdout=PIPE, stderr=STDOUT)
     stdout, stderr = p.communicate()
 
-    time.sleep(5)
-    app.destroy()
-    sys.exit()
-
 app = ctk.CTk()
 app.geometry("700x400")
 app.title("EditWebsite")
