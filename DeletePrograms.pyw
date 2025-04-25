@@ -24,7 +24,7 @@ def SupprimerEmission(entrée_titre):
 
     print(soup.find('h2').string)
 
-    balise_titre = soup.find('h2', string=titre)
+    balise_titre = soup.find('h2', string=f"U+000D U+000A{titre}U+000D U+000A")
     if balise_titre :
         div_émission = balise_titre.parent.parent.parent
         div_émission.decompose()
