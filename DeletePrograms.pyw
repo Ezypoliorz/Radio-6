@@ -73,10 +73,10 @@ def SupprimerEmission(entrée_titre, app):
             p.write(soup_p.prettify())
             p.close()
 
+    label_état.pack(pady=10)
+
     p = Popen(repository_path + "/UploadGitHub.bat", shell=True, stdout=PIPE, stderr=STDOUT)
     stdout, stderr = p.communicate()
-
-    label_état.pack(pady=10)
 
     time.sleep(5)
     app.destroy()
