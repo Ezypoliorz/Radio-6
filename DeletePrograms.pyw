@@ -30,6 +30,7 @@ def SupprimerEmission(entrée_titre):
         div_émission.decompose()
         soup.find("div", {"class": "div-programme-background"}).decompose()
         with open(repository_path + "/émissions.html", "w", encoding="utf-8") as f:
+            f.write(str(soup))
             f.close()
         label_état.configure(text=f"L'émission \"{titre}\" et ses chroniques ont été supprimées !")
     else :
