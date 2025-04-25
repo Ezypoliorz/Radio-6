@@ -25,7 +25,6 @@ def SupprimerEmission(entrée_titre, app, label_état):
     except Exception :
         label_état.configure(text=f"L'émission \"{titre}\" n'existe pas", text_color="red")
         label_état.pack(pady=10)
-        print("émission inexistante")
     if balise_titre :
         div_émission = balise_titre.parent.parent.parent
         div_émission.decompose()
