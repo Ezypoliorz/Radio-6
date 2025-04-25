@@ -87,7 +87,7 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
                 f.write(str(soup))
                 f.close()
 
-    p = Popen("UploadGitHub.bat", shell=True, stdout=PIPE, stderr=STDOUT)
+    p = Popen(repository_path + "/UploadGitHub.bat", shell=True, stdout=PIPE, stderr=STDOUT)
     stdout, stderr = p.communicate()
 
 def AjouterEmission(titre, date, audio, programme) :

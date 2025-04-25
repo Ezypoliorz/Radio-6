@@ -21,7 +21,11 @@ def SupprimerEmission(entrée_titre, app):
     with open(repository_path + "/émissions.html", "r", encoding="utf-8") as f:
         soup = BeautifulSoup(f, "html.parser")
         f.close()
-    balise_titre = soup.find('h2', string=titre)
+
+    try :
+        balise_titre = soup.find('h2', string=titre)
+    except Exception :
+        label_état.configure(text=f"L'émission \"{titre}\" n'existe pas", text_color="red")
     if balise_titre :
         div_émission = balise_titre.parent.parent.parent
         div_émission.decompose()
