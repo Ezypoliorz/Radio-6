@@ -13,10 +13,8 @@ import time
 username = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split('Users/')[1].split('/')[0]
 repository_path = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split(username)[0] + username + "/Documents/GitHub/Radio-6"
 
-def SupprimerEmission(entrée_titre, app):
+def SupprimerEmission(entrée_titre, app, label_état):
     titre = entrée_titre.get()
-
-    label_état = ctk.CTkLabel(master=app, text="Label état")
 
     with open(repository_path + "/émissions.html", "r", encoding="utf-8") as f:
         soup = BeautifulSoup(f, "html.parser")
@@ -93,7 +91,9 @@ ctk.set_default_color_theme("blue")
 entrée_titre = ctk.CTkEntry(master=app, placeholder_text="Titre de l'émission à supprimer", width=200)
 entrée_titre.pack(pady=10)
 
-bouton_titre_date = ctk.CTkButton(master=app, text="Supprimer", command=lambda: SupprimerEmission(entrée_titre, app))
+label_état = ctk.CTkLabel(master=app, text="Label état")
+
+bouton_titre_date = ctk.CTkButton(master=app, text="Supprimer", command=lambda: SupprimerEmission(entrée_titre, app, label_état))
 bouton_titre_date.pack(pady=10)
 
 app.mainloop()
