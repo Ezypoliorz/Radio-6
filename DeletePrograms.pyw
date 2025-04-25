@@ -26,6 +26,7 @@ def SupprimerEmission(entrée_titre, app):
         balise_titre = soup.find('h2', string=titre)
     except Exception :
         label_état.configure(text=f"L'émission \"{titre}\" n'existe pas", text_color="red")
+        label_état.pack(pady=10)
         print("émission inexistante")
     if balise_titre :
         div_émission = balise_titre.parent.parent.parent
@@ -37,6 +38,7 @@ def SupprimerEmission(entrée_titre, app):
         label_état.configure(text=f"L'émission \"{titre}\" et ses chroniques ont été supprimées !")
     else :
         label_état.configure(text=f"L'émission \"{titre}\" n'existe pas", text_color="red")
+        label_état.pack(pady=10)
         print("émission inexistante")
         
     with open(repository_path + "/podcasts-chroniques-scientifiques.html", "r", encoding="utf-8") as s:
@@ -74,8 +76,6 @@ def SupprimerEmission(entrée_titre, app):
         with open(repository_path + "/podcasts-portraits.html", "w", encoding="utf-8") as p:
             p.write(soup_p.prettify())
             p.close()
-
-    label_état.pack(pady=10)
 
     p = Popen(repository_path + "/UploadGitHub.bat", shell=True, stdout=PIPE, stderr=STDOUT)
     stdout, stderr = p.communicate()
