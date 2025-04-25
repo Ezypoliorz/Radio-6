@@ -13,16 +13,12 @@ import time
 username = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split('Users/')[1].split('/')[0]
 repository_path = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split(username)[0] + username + "/Documents/GitHub/Radio-6"
 
-print(repository_path + "/émissions.html")
-
 def SupprimerEmission(entrée_titre):
     global label_état
     titre = entrée_titre.get()
     with open(repository_path + "/émissions.html", "r", encoding="utf-8") as f:
         soup = BeautifulSoup(f, "html.parser")
         f.close()
-
-    print(soup.find('h2').string)
 
     for balise in soup.find_all():
         if balise.string is not None and balise.string.strip() == titre.strip():
@@ -43,33 +39,37 @@ def SupprimerEmission(entrée_titre):
     with open(repository_path + "/podcasts-chroniques-scientifiques.html", "r", encoding="utf-8") as s:
         soup_s = BeautifulSoup(s, "html.parser")
         s.close()
-    if soup_s.find('h2', string=re.compile(re.escape(f"{titre} - "))):
-        soup_s.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
+    if soup_s.find('h3', string=re.compile(re.escape(f"{titre} - "))):
+        soup_s.find('h3', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
         with open(repository_path + "/podcasts-chroniques-scientifiques.html", "w", encoding="utf-8") as s:
+            s.write(str(soup_s))
             s.close()
 
     with open(repository_path + "/podcasts-chroniques-culturelles.html", "r", encoding="utf-8") as c:
         soup_c = BeautifulSoup(c, "html.parser")
         c.close()
-    if soup_c.find('h2', string=re.compile(re.escape(f"{titre} - "))):
-        soup_c.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
+    if soup_c.find('h3', string=re.compile(re.escape(f"{titre} - "))):
+        soup_c.find('h3', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
         with open(repository_path + "/podcasts-chroniques-culturelles.html", "w", encoding="utf-8") as c:
+            c.write(str(soup_c))
             c.close()
 
     with open(repository_path + "/podcasts-chroniques-touristiques.html", "r", encoding="utf-8") as t:
         soup_t = BeautifulSoup(t, "html.parser")
         t.close()
-    if soup_t.find('h2', string=re.compile(re.escape(f"{titre} - "))):
-        soup_t.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
+    if soup_t.find('h3', string=re.compile(re.escape(f"{titre} - "))):
+        soup_t.find('h3', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
         with open(repository_path + "/podcasts-chroniques-scientifiques.html", "w", encoding="utf-8") as t:
+            t.write(str(soup_t))
             t.close()
 
     with open(repository_path + "/podcasts-portraits.html", "r", encoding="utf-8") as p:
         soup_p = BeautifulSoup(p, "html.parser")
         p.close()
-    if soup_p.find('h2', string=re.compile(re.escape(f"{titre} - "))):
-        soup_p.find('h2', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
+    if soup_p.find('h3', string=re.compile(re.escape(f"{titre} - "))):
+        soup_p.find('h3', string=re.compile(re.escape(f"{titre} - "))).parent.parent.parent.decompose()
         with open(repository_path + "/podcasts-portraits.html", "w", encoding="utf-8") as p:
+            p.write(str(soup_p))
             p.close()
 
     p = Popen(repository_path + "/UploadGitHub.bat", shell=True, stdout=PIPE, stderr=STDOUT)
