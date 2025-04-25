@@ -13,18 +13,14 @@ import time
 username = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split('Users/')[1].split('/')[0]
 repository_path = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split(username)[0] + username + "/Documents/GitHub/Radio-6"
 
-def SupprimerEmission(entrée_titre, app, label_état):
+def SupprimerEmission(entrée_titre, app):
+    global label_état
     titre = entrée_titre.get()
 
     with open(repository_path + "/émissions.html", "r", encoding="utf-8") as f:
         soup = BeautifulSoup(f, "html.parser")
         f.close()
-
-    try :
-        balise_titre = soup.find('h2', string=titre)
-    except Exception :
-        label_état.configure(text=f"L'émission \"{titre}\" n'existe pas", text_color="red")
-        label_état.pack(pady=10)
+    balise_titre = soup.find('h2', string=titre)
     if balise_titre :
         div_émission = balise_titre.parent.parent.parent
         div_émission.decompose()
@@ -92,7 +88,9 @@ entrée_titre.pack(pady=10)
 
 label_état = ctk.CTkLabel(master=app, text="Label état")
 
-bouton_titre_date = ctk.CTkButton(master=app, text="Supprimer", command=lambda: SupprimerEmission(entrée_titre, app, label_état))
+bouton_titre_date = ctk.CTkButton(master=app, text="Supprimer", command=lambda: SupprimerEmission(entrée_titre, app))
 bouton_titre_date.pack(pady=10)
+
+label_état.configure()
 
 app.mainloop()
