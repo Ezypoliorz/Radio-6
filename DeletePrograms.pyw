@@ -31,7 +31,6 @@ def SupprimerEmission(entrée_titre, app):
         label_état.configure(text=f"L'émission \"{titre}\" et ses chroniques ont été supprimées !")
     else :
         label_état.configure(text=f"L'émission \"{titre}\" n'existe pas", text_color="red")
-        label_état.pack(pady=10)
         print("émission inexistante")
         
     with open(repository_path + "/podcasts-chroniques-scientifiques.html", "r", encoding="utf-8") as s:
@@ -86,11 +85,10 @@ ctk.set_default_color_theme("blue")
 entrée_titre = ctk.CTkEntry(master=app, placeholder_text="Titre de l'émission à supprimer", width=200)
 entrée_titre.pack(pady=10)
 
-label_état = ctk.CTkLabel(master=app, text="Label état")
-
 bouton_titre_date = ctk.CTkButton(master=app, text="Supprimer", command=lambda: SupprimerEmission(entrée_titre, app))
 bouton_titre_date.pack(pady=10)
 
-label_état.configure()
+label_état = ctk.CTkLabel(master=app, text="Label état")
+label_état.pack(pady=10)
 
 app.mainloop()
