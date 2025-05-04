@@ -18,26 +18,24 @@ async function GetLastProgram() {
   }
 
 async function GetNextProgram() {
-  fetch('calendar.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP! statut: ${response.status}`);
-      }
-      return response.json(); // Analyse automatiquement le JSON
-    })
-    .then(data => {
-      const Titre = data[0].titre;
-      const Date = data[0].date;
-      const Description = data[0].description;
-      const Image = data[0].image;
-      const Infos = [Titre, Date, Description, Image]
-      return Infos
-    })
-    .catch(error => {
-      return [error, "", "", "", ""];
-    });
+  try {
+    const response = await fetch('https://ezypoliorz.github.io/Radio-6/calendar.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json()
+    const Titre = data.titre;
+    const Date = data.date;
+    const Description = data.description;
+    const Image = data.image;
+    const Infos = [Titre, Date, Description, Image]
+    return Infos
 
+  } catch (error) {
+    return [error, "", "", "", ""];
+  }
 }
+
   
 async function main() {
 
