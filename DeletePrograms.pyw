@@ -7,8 +7,6 @@ from bs4 import BeautifulSoup # BeautifulSoup : Récupération de fichiers HTML
 import os # OS : Gestion des fichiers et répertoires
 import re
 from subprocess import Popen, PIPE, STDOUT # Subprocess : Exécution du fichier Batch
-import sys
-import time
 
 username = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split('Users/')[1].split('/')[0]
 repository_path = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split(username)[0] + username + "/Documents/GitHub/Radio-6"

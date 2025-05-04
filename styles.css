@@ -28,6 +28,40 @@ body {
 
   }
 
+  .image-nav{
+
+    background-color: #fbfbfb;
+    border-radius: 30%;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translate(-30px, 0px);
+
+  }
+  
+  .div-texte-nav{
+
+    width: 150px;
+    position: absolute;
+    bottom: 115px;
+    left: 50%;
+    transform: translate(-75px, 0px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+  }
+
+  .texte-nav{
+
+    display: block;
+    margin: 0 auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #fbfbfb;
+
+  }
+
   .div-nav-téléphone{
 
     display: none;
@@ -370,6 +404,37 @@ body {
   margin-bottom: 30px;
   margin-top: -10px;
   text-align: justify;
+
+}
+
+.texte-bouton-accueil{
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #fbfbfb;
+  margin: 0 auto;
+  display: flex;
+  
+}
+
+.bouton-accueil{
+
+  background-color: #505050;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border-radius: 5px;
+
+}
+
+.bouton-accueil:hover{
+
+  cursor: pointer;
 
 }
 

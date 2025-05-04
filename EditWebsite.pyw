@@ -44,6 +44,8 @@ def AjouterSujets(chroniques, noms_chroniques, noms_fichiers_chroniques, liste_t
 
             audio_chronique = AudioSegment.from_file(audio)
             audio_chronique = audio_chronique[temps_chronique_début*1000:temps_chronique_fin*1000]
+            audio_chronique = audio_chronique.fade_in(1500)
+            audio_chronique = audio_chronique.fade_out(1500)
             audio_chronique.export(f"{noms_chroniques[i]} - {sujet_chronique}.wav", format="WAV")
 
             source_path = f"{noms_chroniques[i]} - {sujet_chronique}.wav"
