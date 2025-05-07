@@ -438,6 +438,16 @@ body {
 
 }
 
+#Image-prochaine-émission{
+
+  height: 220px;
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-radius: 7%;
+
+}
+
 .underlined {
 
   color: black;
