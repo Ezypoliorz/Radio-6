@@ -291,7 +291,7 @@ body {
 
  #Curseur {
 
-    top: 200px;
+    top: 250px;
     position: absolute;
     left: 50%;
     z-index: 2;
@@ -313,7 +313,7 @@ body {
  #Slider {
 
     position: absolute;
-    top: 225px;
+    top: 275px;
     left: 50%;
     z-index: 1;
     height: 250px;
@@ -339,7 +339,7 @@ body {
  #Volume-icone {
 
   position: absolute;
-  top: 490px;
+  top: 540px;
   left: 50%;
   z-index: 1;
   transform: translate(-50%, 0px);
