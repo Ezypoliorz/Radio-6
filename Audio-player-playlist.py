@@ -9,7 +9,7 @@ import sys # Sys : utilisé pour quitter le programme
 import os # OS : utilisé pour les chemins de fichiers
 
 # Définition des variables
-script_dir = os.path.dirname(os.path.abspath(__file__)) # Get the directory of the script
+script_dir = os.path.dirname(os.path.abspath(__file__)) # Get the directory of the scriptz
 csv_file = os.path.join(script_dir, "Playlist/playlist.csv") # Construct the full path to the CSV file
 audio_files = [] # Liste des fichiers audio
 mode = "" # Mode de lecture : flow (sans interruption) ou pause (avec interruption)
