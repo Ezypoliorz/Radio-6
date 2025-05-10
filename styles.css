@@ -130,6 +130,13 @@ body {
 
   }
 
+  #Description-prochaine-émission a {
+
+    color: black;
+    text-decoration: underline;
+
+  }
+
   .div-émission-background {
 
     background-color: black;

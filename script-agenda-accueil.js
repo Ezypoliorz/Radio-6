@@ -36,7 +36,14 @@ async function GetNextProgram() {
   }
 }
 
-  
+function convertLink(texte) {
+  const urlRegex = /(https?:\/\/|www\.)[^\s]+/gi;
+  return texte.replace(urlRegex, (url) => {
+    const href = url.startsWith('http') ? url : 'http://' + url;
+    return `<a href="${href}" target="_blank">${url}</a>`;
+  });
+}
+
 async function main() {
 
 const infos1 = await GetLastProgram();
@@ -51,7 +58,8 @@ const DescriptionEmission = infos[2];
 const ImageEmission = infos[3];
 document.getElementById("Titre-prochaine-émission").textContent = TitreEmisison;
 document.getElementById("Date-heure-prochaine-émission").textContent = DateEmission;
-document.getElementById("Description-prochaine-émission").textContent = DescriptionEmission;
+document.getElementById("Description-prochaine-émission").innerHTML = convertLink(DescriptionEmission);
 document.getElementById("Image-prochaine-émission").src = ImageEmission;
+
 }
 main();
