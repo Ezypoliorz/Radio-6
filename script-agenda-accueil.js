@@ -53,7 +53,37 @@ document.getElementById("Infos-dernière-émission").textContent = TitreEmisison
 
 const infos = await GetNextProgram();
 const TitreEmisison = infos[0];
+
 const DateEmission = infos[1];
+const DateEmissionJour = DateEmission.split(" - ")[0];
+
+const Ajd = new Date();
+const Annee = Ajd.getFullYear();
+const Mois = Ajd.getMonth() + 1;
+const Jour = Ajd.getDate();
+
+const AnneeEmission = "20" + DateEmissionJour.split("/")[2];
+let MoisEmission = DateEmissionJour.split("/")[1];
+if(MoisEmission[0] === "0"){
+  MoisEmission = MoisEmission.slice(1);
+}
+let JourEmission = DateEmissionJour.split("/")[0];
+if(JourEmission[0] === "0"){
+  JourEmission = JourEmission.slice(1);
+}
+
+if(parseInt(Annee) > parseInt(AnneeEmission)) {
+  document.getElementById("DivProchaineEmission").style.display = "none";
+}
+
+if(parseInt(Annee) === parseInt(AnneeEmission) && parseInt(Mois) > parseInt(MoisEmission)) {
+  document.getElementById("DivProchaineEmission").style.display = "none";
+}
+
+if(parseInt(Annee) === parseInt(AnneeEmission) && parseInt(Mois) === parseInt(MoisEmission) && parseInt(Jour) > parseInt(JourEmission)) {
+  document.getElementById("DivProchaineEmission").style.display = "none";
+}
+
 const DescriptionEmission = infos[2];
 const ImageEmission = infos[3];
 document.getElementById("Titre-prochaine-émission").textContent = TitreEmisison;
