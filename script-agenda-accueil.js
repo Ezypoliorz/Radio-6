@@ -1,6 +1,6 @@
 async function GetLastProgram() {
     try {
-      const response = await fetch('https://ArcisseDeCaumont.github.io/Radio-6/émissions.html');
+      const response = await fetch('https://arcissedecaumont.github.io/Radio-6/émissions.html');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -19,7 +19,7 @@ async function GetLastProgram() {
 
 async function GetNextProgram() {
   try {
-    const response = await fetch('https://ArcisseDeCaumont.github.io/Radio-6/calendar.json');
+    const response = await fetch('https://arcissedecaumont.github.io/Radio-6/calendar.json');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
