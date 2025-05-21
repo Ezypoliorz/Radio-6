@@ -78,3 +78,19 @@ if (navigator.userAgent.match(/iPad|Android|Tablet/i)) { // Si l'utilisateur est
   
   
   }
+
+  function pauseOtherAudios(audioElement) {
+const allAudios = document.querySelectorAll('audio'); // On récupère tous les éléments audio
+allAudios.forEach(audio => { // Pour chaque élément audio
+  if (audio !== audioElement) { // Si l'élément audio est différent de l'élément audio actuel
+    audio.pause(); // On met en pause l'élément audio
+  }
+});
+}
+
+const audios = document.querySelectorAll('audio'); // On récupère tous les éléments audio
+audios.forEach(audio => { // Pour chaque élément audio
+audio.addEventListener('play', () => { // On crée un événement au lancement de la lecture
+  pauseOtherAudios(audio); // On met en pause les autres éléments audio
+});
+});
