@@ -1,6 +1,32 @@
+/* 
+Light theme :
+  main color = #fbfbfb
+  secondary color = black
+
+Dark theme :
+  main color = #363636
+  secondary color = #fbfbfb
+*/
+
+:root{
+
+  --main-color: #fbfbfb;
+  --secondary-color: black;
+
+}
+
+.bouton-thème{
+
+  position: absolute;
+  top: 25px;
+  right: 25px;
+
+}
+
 body {
 
-  background-color: #fbfbfb;
+  background-color: var(--main-color);
+  transition: 200ms;
 
 }
 
@@ -79,8 +105,9 @@ body {
     width: 100% - 200px;
     margin-left: 200px;
     align-items: center;
-    background-color: #fbfbfb;
+    background-color: var(--main-color);
     display: block;
+    transition: 200ms;
 
   }
 
@@ -132,7 +159,7 @@ body {
 
   #Description-prochaine-émission a {
 
-    color: black;
+    color: var(--secondary-color);
     text-decoration: underline;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -141,7 +168,7 @@ body {
 
   .div-émission-background {
 
-    background-color: black;
+    background-color: var(--secondary-color);
     height: 163px;
     width: 503px;
     margin: 0 auto;
@@ -175,7 +202,7 @@ body {
 
   .div-émission {
 
-    background-color: #fbfbfb;
+    background-color: var(--main-color);
     width: 500px;
     border-radius: 8px;
     margin: 0 auto;
@@ -199,7 +226,7 @@ body {
   .infos-émission {
 
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: black;
+    color: var(--secondary-color);
     margin-left: 10px;
     width: auto;
     margin-bottom: 30px;
@@ -216,7 +243,7 @@ body {
   .programme {
 
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: black;
+    color: var(--secondary-color);
     margin-left: 10px;
   
    }
@@ -247,7 +274,7 @@ body {
     }
   
     .div-programme-ensemble {
-      background-color:  #fbfbfb;
+      background-color:  var(--main-color);
       height: auto;
       width: 500px;
       border-radius: 8px;
@@ -384,7 +411,7 @@ body {
 }
 
 .div-accueil {
-  background-color:  #fbfbfb;
+  background-color: var(--main-color);
   height: auto;
   width: 700px;
   border-radius: 8px;
@@ -397,7 +424,7 @@ body {
 .titre-accueil {
 
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: black;
+  color: var(--secondary-color);
   margin-left: 10px;
   width: auto;
 
@@ -406,7 +433,7 @@ body {
 .contenu-accueil {
 
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: black;
+  color: var(--secondary-color);
   margin-left: 10px;
   margin-right: 10px;
   width: auto;
@@ -459,7 +486,7 @@ body {
 
 .underlined {
 
-  color: black;
+  color: var(--secondary-color);
   text-decoration: underline;
 
 }
@@ -499,7 +526,7 @@ body {
 
 .div-bouton-podcast-background {
 
-  background-color: black;
+  background-color: var(--secondary-color);
   height: fit-content + 4px;
   width: 363px;
   margin: 0 auto;
@@ -541,7 +568,7 @@ body {
 
 .div-bouton-podcast {
 
-  background-color: #fbfbfb;
+  background-color: var(--main-color);
   height: fit-content;
   width: 357px;
   border-radius: 8px;
@@ -562,7 +589,7 @@ body {
 .texte-bouton-podcast {
 
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: black;
+  color: var(--secondary-color);
   margin: 5px auto;
   margin-top: 10px;
   display: block;
@@ -780,7 +807,7 @@ body {
 
   .div-émission {
 
-    background-color: #fbfbfb;
+    background-color: var(--main-color);
     height: auto;
     padding-bottom: 15px;
     width: 340px;
@@ -800,6 +827,7 @@ body {
 
   .div-programme-background {
   
+    transition: 2000ms;
     height: auto;
     width: 343px;
     margin: 0 auto;
@@ -852,7 +880,7 @@ body {
   }
   
   .div-accueil {
-    background-color:  #fbfbfb;
+    background-color: var(--main-color);
     height: auto;
     width: 340px;
     border-radius: 8px;

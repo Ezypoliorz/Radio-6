@@ -13,7 +13,7 @@ async function GetLastProgram() {
       return Infos
 
     } catch (error) {
-      return [error, ""];
+      return ["", ""];
     }
   }
 
@@ -33,7 +33,8 @@ async function GetNextProgram() {
     return Infos
 
   } catch (error) {
-    return [error, "", "", "", ""];
+    document.getElementById("DivProchaineEmission").style.display = "none";
+    return ["", "", "", "", ""];
   }
 }
 
