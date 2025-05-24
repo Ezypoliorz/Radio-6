@@ -2,6 +2,7 @@
 Light theme :
   main color = #fbfbfb
   secondary color = black
+  third color = #595959
 
 Dark theme :
   main color = #363636
@@ -12,11 +13,13 @@ Dark theme :
 
   --main-color: #fbfbfb;
   --secondary-color: black;
+  --third-color: #595959;
 
 }
 
 .bouton-thème{
 
+  display: block;
   position: absolute;
   top: 25px;
   right: 25px;
@@ -236,7 +239,7 @@ body {
   .date-émission {
 
     margin-top: -18px;
-    color: #595959;
+    color: var(--third-color);
 
   }
 
@@ -454,7 +457,7 @@ body {
 
 .bouton-accueil{
 
-  background-color: #505050;
+  background-color: var(--third-color);
   margin: 0 auto;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -676,6 +679,11 @@ body {
 
 
 @media (max-width: 480px) {
+
+  .bouton-thème{
+    display: none;
+  }
+
 
   body {
 
