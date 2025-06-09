@@ -1,19 +1,19 @@
 #  » EditWebsite
 #  » © Web Radio du lycée Arcisse de Caumont, 2025
 
-import tkinter as tk # Tkinter : Interface graphique
-import customtkinter as ctk # CustomTkinter : Version améliorée de Tkinter
-from bs4 import BeautifulSoup # BeautifulSoup : Récupération de fichiers HTML 
-import sys # Sys : Gestion des erreurs
-import os # OS : Gestion des fichiers et répertoires
-from pydub import AudioSegment # Pydub : Manipulation de fichiers audio
-from subprocess import Popen, PIPE, STDOUT # Subprocess : Exécution du fichier Batch
+import tkinter as tk
+import customtkinter as ctk
+from bs4 import BeautifulSoup
+import sys
+import os
+from pydub import AudioSegment
+from subprocess import Popen, PIPE, STDOUT
 
 
-titre_émission = "Titre" # Titre de l'émission
-date_émission = "Date" # Date de l'émission
-url_audio_émission = "Émissions/Musique test 3.mp3" # URL du fichier audio
-id_number = 0 # ID des divs HTML de l'émission
+titre_émission = "Titre"
+date_émission = "Date"
+url_audio_émission = "Émissions/Musique test 3.mp3"
+id_number = 0
 
 username = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split('Users/')[1].split('/')[0]
 repository_path = str(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/").split(username)[0] + username + "/Documents/GitHub/Radio-6"
@@ -116,7 +116,7 @@ def AjouterEmission(titre, date, audio, programme) :
                         <h3 class="date-émission">{date}</h3>
                     </div>
 
-                    <div class="infos" id="Infos{id_number}"><img src="Images/Programme.svg" alt="" height="45px"></div>
+                    <div class="infos" id="Infos{id_number}"><img class="icone-infos" src="Images/Programme.svg" alt="" height="45px"></div>
 
                     <br>
 
@@ -164,7 +164,7 @@ def AjouterEmission(titre, date, audio, programme) :
 
     ajout_programme = f"""
                 </div>
-                <div class="fermer" id="Close{id_number}"><img src="Images/Fermer.svg" alt="" height="45px"></div>
+                <div class="fermer" id="Close{id_number}"><img class="icone-fermer" src="Images/Fermer.svg" alt="" height="45px"></div>
             </div>
         </div>
     """
@@ -281,11 +281,9 @@ class ListeModifiable(ctk.CTk):
         self.afficher_liste()
 
     def afficher_liste(self):
-        # Effacer le cadre
         for widget in self.cadre_liste.winfo_children():
             widget.destroy()
 
-        # Afficher les éléments
         for element in self.liste_elements:
             cadre_element = ctk.CTkFrame(self.cadre_liste)
             cadre_element.pack(pady=5, fill="x")
