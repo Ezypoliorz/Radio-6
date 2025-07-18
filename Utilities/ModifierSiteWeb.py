@@ -6,8 +6,9 @@ import subprocess
 import shutil
 from pydub import AudioSegment
 from bs4 import BeautifulSoup
-import time
 import sys
+import requests
+import Errors
 
 chroniques = []
 spreadsheet_path = ""
@@ -26,46 +27,33 @@ ctk.set_default_color_theme("blue")
 
 def commit_changes():
     global changed_files
+    global app
     repo_path = f"C:/Users/{os.getlogin()}/Documents/GitHub/Radio-6/"
     repo_url = f"https://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@github.com/ArcisseDeCaumont/Radio-6.git"
     os.chdir(repo_path)
     
     try:
-        # Setting URL
         subprocess.run(['git', 'remote', 'set-url', 'origin', repo_url], check=True, capture_output=True, text=True)
         print("Repo URL set")
         
-        # Add all changed files at once
         subprocess.run(['git', 'add', '-A'], check=True, capture_output=True, text=True)
         print("All changes added to staging.")
 
-        # Check if there are changes to commit
         status_result = subprocess.run(['git', 'status', '--porcelain'], check=True, capture_output=True, text=True)
         if not status_result.stdout.strip():
             print("No changes to commit, skipping.")
             return
 
-        # Committing all changes
         commit_result = subprocess.run(['git', 'commit', '-m', "Upload automatique"], check=True, capture_output=True, text=True)
         print("Changes committed.")
         print("Commit Output:", commit_result.stdout)
 
-        # Pushing all changes
         push_result = subprocess.run(['git', 'push'], check=True, capture_output=True, text=True, timeout=700)
         print("All changes pushed successfully.")
         print("Push Output:", push_result.stdout)
 
     except subprocess.CalledProcessError as e:
-        print(f"An error occurred during commit or push.")
-        print(f"Command failed: {' '.join(e.cmd)}")
-        print(f"Return code: {e.returncode}")
-        print(f"Stdout: {e.stdout}")
-        print(f"Stderr: {e.stderr}")
-        raise_error("Erreur lors de la synchronisation GitHub. Détails dans la console.")
-        return
-    except Exception as e:
-        print(e)
-        raise_error("Erreur générale lors de la synchronisation GitHub.")
+        Errors.raise_error(app, "Erreur lors de la synchronisation GitHub.", "ModifierSiteWeb.py", mail=True, specific_error=e)
         return
 
 
@@ -78,23 +66,7 @@ class Chronique:
         self.timestamp_réel = timestamp
         self.podcast = False
 
-def raise_error(error):
-    global app
-    print("Raise Error")
-    app.destroy()
-    app = ctk.CTk()
-    app.geometry("600x400")
-    app.title("ModifierSiteWeb")
-    ctk.set_appearance_mode("System")
-    ctk.set_default_color_theme("blue")
-    label_arror = ctk.CTkLabel(master=app, text=error, width=165, text_color="red")
-    label_arror.pack(pady=5)
-    label_advice1 = ctk.CTkLabel(master=app, text="Lisez la documentation et réessayez", width=165, text_color="red")
-    label_advice1.pack(pady=0)
-    label_advice2 = ctk.CTkLabel(master=app, text="Pour toute  aide supplémentaire, contactez oscar.mazeure@orange.fr", width=165, text_color="red")
-    label_advice2.pack(pady=0)
-    app.mainloop()
-    sys.exit()
+
 
 def read_spreadsheet(path):
     print("Read Spreadsheet")
@@ -104,7 +76,7 @@ def read_spreadsheet(path):
     file = pd.read_excel(path, sheet_name=0, converters={'Début (MM:SS)' : str}, header=None)
     print("File converted to pandas object")
     if file.iloc[0,0] != "Nom/type de la chronique" or file.iloc[0,1] != "Début (MM:SS)" or file.iloc[0,2] != "Nom pour le podcast" :
-        raise_error("Mise en page du fichier incorrecte")
+        Errors.raise_error(app, "Mise en page du fichier Excel incorrecte !", "ModifierSiteWeb.py")
     height, width = file.shape
     
     for i in range(1, height) :
@@ -253,14 +225,18 @@ def select_spreadsheet(app):
     global spreadsheet_date
     spreadsheet_path = tk.filedialog.askopenfilename(title="Sélectionner le fichier infos",
                                                      filetypes=(("Fichiers Excel", ".xlsx"), ("Tous les fichiers", ".*")))
-    spreadsheet_title = spreadsheet_path.split("/")[-1].split(" - ")[0]
-    spreadsheet_date = spreadsheet_path.split("/")[-1].split(" - ")[1].replace("_","/")[:-5]
-    label_spreadsheet_path = ctk.CTkLabel(master=app, text=f"Fichier sélectionné : {spreadsheet_path}", width=165)
-    label_spreadsheet_title = ctk.CTkLabel(master=app, text=f"Nom enregistré : {spreadsheet_title}", width=165)
-    label_spreadsheet_date = ctk.CTkLabel(master=app, text=f"Date enregistrée : {spreadsheet_date}", width=165)
-    label_spreadsheet_path.pack(pady=5)
-    label_spreadsheet_title.pack(pady=0)
-    label_spreadsheet_date.pack(pady=0)
+    if spreadsheet_path.split(".")[-1] != "xlsx" :
+        Errors.raise_error(app, "Format de fichier invalide ! Fichier Excel (.xlsx) nécessaire", "ModifierSiteWeb.py")
+        return
+    else :
+        spreadsheet_title = spreadsheet_path.split("/")[-1].split(" - ")[0]
+        spreadsheet_date = spreadsheet_path.split("/")[-1].split(" - ")[1].replace("_","/")[:-5]
+        label_spreadsheet_path = ctk.CTkLabel(master=app, text=f"Fichier sélectionné : {spreadsheet_path}", width=165)
+        label_spreadsheet_title = ctk.CTkLabel(master=app, text=f"Nom enregistré : {spreadsheet_title}", width=165)
+        label_spreadsheet_date = ctk.CTkLabel(master=app, text=f"Date enregistrée : {spreadsheet_date}", width=165)
+        label_spreadsheet_path.pack(pady=5)
+        label_spreadsheet_title.pack(pady=0)
+        label_spreadsheet_date.pack(pady=0)
 
     print("Calling Read Spreadsheet")
     read_spreadsheet(spreadsheet_path)
