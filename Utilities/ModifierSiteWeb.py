@@ -150,7 +150,7 @@ def modify_html():
 
                     <div class="div-audio">
                         <audio controls class="audio" id="Audio{id_number}">
-                            <source src="{audio_path}" type="audio/mpeg">
+                            <source src="Émissions/{audio_path}" type="audio/mpeg">
                             Votre navigateur ne supporte pas l'élément audio.
                         </audio>
                     </div>
@@ -202,7 +202,7 @@ def modify_html():
 
                     <div class="div-audio-podcasts">
                         <audio controls class="audio" id="Audio{id_number}">
-                            <source src="{chronique.type} - {chronique.nom}.mp3" type="audio/mpeg">
+                            <source src="Émissions/{chronique.type} - {chronique.nom}.mp3" type="audio/mpeg">
                             Votre navigateur ne supporte pas l'élément audio.
                         </audio>
                     </div>
