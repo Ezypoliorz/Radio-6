@@ -53,6 +53,7 @@ def commit_changes():
         print("Push Output:", push_result.stdout)
 
     except subprocess.CalledProcessError as e:
+        print(e)
         Errors.raise_error(app, "Erreur lors de la synchronisation GitHub.", "ModifierSiteWeb.py", mail=True, specific_error=e)
         return
 
