@@ -29,7 +29,7 @@ def commit_changes():
     global changed_files
     global app
     repo_path = f"C:/Users/{os.getlogin()}/Documents/GitHub/Radio-6/"
-    repo_url = f"https://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@github.com/ArcisseDeCaumont/Radio-6.git"
+    repo_url = f"https://oauth2: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@github.com/ArcisseDeCaumont/Radio-6.git"
     os.chdir(repo_path)
     
     try:
@@ -84,7 +84,7 @@ def read_spreadsheet(path):
         chroniques.append(nouvelle_chronique)
         if nouvelle_chronique.type in noms_chroniques_podcasts :
             nouvelle_chronique.podcast = True
-            nouvelle_chronique.nom = file.iloc[i, 2].replace('?', '')
+            nouvelle_chronique.nom = file.iloc[i, 2]
             print(nouvelle_chronique.nom)
         timestamp_minutes = nouvelle_chronique.timestamp.split(":")[0]
         timestamp_secondes = nouvelle_chronique.timestamp.split(":")[1]
@@ -122,7 +122,7 @@ def modify_html():
 
                     <div class="div-audio">
                         <audio controls class="audio" id="Audio{id_number}">
-                            <source src="Émissions/{audio_path}" type="audio/mpeg">
+                            <source src="Émissions/{audio_path.split("/")[-1]}" type="audio/mpeg">
                             Votre navigateur ne supporte pas l'élément audio.
                         </audio>
                     </div>
@@ -174,7 +174,7 @@ def modify_html():
 
                     <div class="div-audio-podcasts">
                         <audio controls class="audio" id="Audio{id_number}">
-                            <source src="Émissions/{chronique.type} - {chronique.nom}.mp3" type="audio/mpeg">
+                            <source src="Émissions/{chronique.type} - {chronique.nom.replace('?', '').replace('<', '').replace('>', '').replace(':', '').replace('/', '').replace('|', '').replace('*', '')}.mp3" type="audio/mpeg">
                             Votre navigateur ne supporte pas l'élément audio.
                         </audio>
                     </div>
@@ -207,14 +207,14 @@ def process_info():
             audio_chronique = audio_chronique[int(chronique.timestamp_réel*1000):int(chroniques[chronique.index+1].timestamp_réel*1000)]
             audio_chronique = audio_chronique.fade_in(1500)
             audio_chronique = audio_chronique.fade_out(1500)
-            audio_chronique.export(f"{chronique.type} - {chronique.nom}.mp3", format="MP3")
+            audio_chronique.export(f"{chronique.type} - {chronique.nom.replace('?', '').replace('<', '').replace('>', '').replace(':', '').replace('/', '').replace('|', '').replace('*', '')}.mp3", format="MP3")
             try :
-                shutil.move(f"{chronique.type} - {chronique.nom}.mp3", f"C:/Users/{os.getlogin()}/Documents/GitHub/Radio-6/Émissions")
+                shutil.move(f"{chronique.type} - {chronique.nom.replace('?', '').replace('<', '').replace('>', '').replace(':', '').replace('/', '').replace('|', '').replace('*', '')}.mp3", f"C:/Users/{os.getlogin()}/Documents/GitHub/Radio-6/Émissions")
             except shutil.SameFileError :
                 pass
             except shutil.Error :
                 pass
-            changed_files.append(f"Émissions/{chronique.type} - {chronique.nom}.mp3")
+            changed_files.append(f"Émissions/{chronique.type} - {chronique.nom.replace('?', '').replace('<', '').replace('>', '').replace(':', '').replace('/', '').replace('|', '').replace('*', '')}.mp3")
 
     modify_html()
 
