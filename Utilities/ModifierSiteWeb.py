@@ -29,7 +29,7 @@ def commit_changes():
     global changed_files
     global app
     repo_path = f"C:/Users/{os.getlogin()}/Documents/GitHub/Radio-6/"
-    repo_url = f"https://oauth2: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@github.com/ArcisseDeCaumont/Radio-6.git"
+    repo_url = f"https://oauth2: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@github.com/ArcisseDeCaumont/Radio-6.git"
     os.chdir(repo_path)
     
     try:
