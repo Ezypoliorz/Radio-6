@@ -29,13 +29,9 @@ def commit_changes():
     global changed_files
     global app
     repo_path = f"C:/Users/{os.getlogin()}/Documents/GitHub/Radio-6/"
-    repo_url = f"https://oauth2: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@github.com/ArcisseDeCaumont/Radio-6.git"
     os.chdir(repo_path)
     
-    try:
-        subprocess.run(['git', 'remote', 'set-url', 'origin', repo_url], check=True, capture_output=True, text=True)
-        print("Repo URL set")
-        
+    try:        
         subprocess.run(['git', 'add', '-A'], check=True, capture_output=True, text=True)
         print("All changes added to staging.")
 
